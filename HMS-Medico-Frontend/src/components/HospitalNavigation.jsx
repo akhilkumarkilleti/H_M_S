@@ -525,6 +525,13 @@ export default function HospitalNavigation() {
             Quick Enquiry
           </button>
 
+          <a
+            className="common-nav-button"
+            href={import.meta.env.BASE_URL + "inventory/"}
+          >
+            Inventory
+          </a>
+
         </div>
 
         {/* ===================================================
