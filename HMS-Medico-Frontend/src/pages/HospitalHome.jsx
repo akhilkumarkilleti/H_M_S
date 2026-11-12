@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HospitalHome.css";
+import home1Img from "../assets/home1.png";
+import doctorArticleImg from "../assets/doctorarticlepic.jpg";
+import mainPageImg from "../assets/Mainpage.jpg";
 
 function HospitalHome() {
   const navigate = useNavigate();
@@ -123,7 +126,7 @@ function HospitalHome() {
       <section className="hospital-hero">
 
         <img
-          src="/src/assets/home1.png"
+          src={home1Img}
           alt="MediCo Hospital"
           className="hospital-hero-image"
         />
@@ -365,7 +368,7 @@ function HospitalHome() {
         <div className="about-box">
 
           <img
-            src="/src/assets/doctorarticlepic.jpg"
+            src={doctorArticleImg}
             alt="Better Healthcare"
             className="about-image"
           />
@@ -510,7 +513,7 @@ function HospitalHome() {
               <article className="rare-case-card">
                 <div className="rare-case-image">
                   <img
-                    src="/src/assets/Mainpage.jpg"
+                    src={mainPageImg}
                     alt="Rare Aortic Arch Replacement"
                   />
                   <span className="case-category">Cardiac Surgery</span>
@@ -538,7 +541,7 @@ function HospitalHome() {
               <article className="rare-case-card">
                 <div className="rare-case-image">
                   <img
-                    src="/src/assets/Mainpage.jpg"
+                    src={mainPageImg}
                     alt="Bilateral Total Knee Replacement"
                   />
                   <span className="case-category">Orthopaedics</span>
@@ -572,7 +575,7 @@ function HospitalHome() {
               <article className="rare-case-card">
                 <div className="rare-case-image">
                   <img
-                    src="/src/assets/Mainpage.jpg"
+                    src={mainPageImg}
                     alt="Bilateral Hand Transplantation"
                   />
                   <span className="case-category">Transplant Surgery</span>

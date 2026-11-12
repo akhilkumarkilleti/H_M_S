@@ -69,7 +69,7 @@ import TransplantFollowUpPage from "./pages/treatments/TransplantFollowUpPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<PublicLayout><HospitalHome /></PublicLayout>} />
 
