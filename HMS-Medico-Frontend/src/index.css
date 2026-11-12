@@ -1,0 +1,1325 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.dashboard-sidebar-nav-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.dashboard-sidebar-nav-scroll::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f7fbff;
+    color: #123047;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: white;
+
+    border-bottom: 1px solid #e7eef5;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    color: #0c7894;
+}
+
+.logo-icon {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #0b9bb7;
+    color: white;
+
+    border-radius: 9px;
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #506576;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #0b9bb7;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.admin-login-btn,
+.login-btn,
+.signup-btn,
+.primary-btn,
+.secondary-btn,
+.cta-button {
+    border: none;
+
+    border-radius: 7px;
+
+    padding: 12px 20px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.admin-login-btn {
+    background: #123047;
+    color: white;
+    border: 1px solid #123047;
+}
+
+.admin-login-btn:hover {
+    background: #0b819c;
+    border-color: #0b819c;
+}
+
+.login-btn {
+    background: #123047;
+
+    color: White;
+
+    border: 1px solid #0b9bb7;
+}
+
+.login-btn:hover {
+
+    background: #0b819c;
+    border-color: #0b819c;
+}
+
+.signup-btn,
+.primary-btn {
+    background: #123047;
+
+    color: white;
+}
+
+.signup-btn:hover,
+.primary-btn:hover {
+    background: #0b819c;
+    border-color: #0b819c;
+}
+
+.secondary-btn {
+    background: white;
+
+    color: #0b819c;
+
+    border: 1px solid #0b9bb7;
+}
+
+.secondary-btn:hover {
+    background: #e8f8fb;
+}
+
+
+/* ================= HERO ================= */
+
+.hero-section {
+    min-height: 600px;
+
+    padding: 80px 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 70px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eafaff 0%,
+            #ffffff 55%,
+            #eefaff 100%
+        );
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-small-title {
+    color: #0b9bb7;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: 58px;
+
+    line-height: 1.1;
+
+    color: #123047;
+
+    margin-bottom: 25px;
+}
+
+.hero-content h1 span {
+    color: #0b9bb7;
+}
+
+.hero-description {
+    max-width: 550px;
+
+    color: #637887;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+
+    gap: 15px;
+}
+
+
+/* ================= HERO CARD ================= */
+
+.hero-card {
+    width: 390px;
+
+    min-height: 390px;
+
+    padding: 45px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b9bb7,
+            #08738d
+        );
+
+    color: white;
+
+    box-shadow:
+        0 25px 60px
+        rgba(11, 155, 183, 0.25);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.medical-cross {
+    width: 70px;
+    height: 70px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.18);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 55px;
+
+    margin-bottom: 25px;
+}
+
+.hero-card h2 {
+    font-size: 30px;
+
+    line-height: 1.3;
+
+    margin-bottom: 15px;
+}
+
+.hero-card p {
+    line-height: 1.6;
+
+    color: #d9f8ff;
+}
+
+.stats {
+    display: flex;
+
+    gap: 30px;
+
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid
+        rgba(255,255,255,0.25);
+}
+
+.stats div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.stats strong {
+    font-size: 20px;
+}
+
+.stats span {
+    font-size: 12px;
+
+    color: #c8f4fc;
+}
+
+
+/* ================= SERVICES ================= */
+
+.services-section {
+    padding: 90px 7%;
+
+    text-align: center;
+
+    background: white;
+}
+
+.section-label {
+    color: #0b9bb7;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+.services-section h2,
+.about-section h2 {
+    font-size: 38px;
+
+    color: #123047;
+
+    margin-bottom: 15px;
+}
+
+.section-description {
+    color: #718391;
+
+    margin-bottom: 45px;
+}
+
+.service-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+.service-card {
+    padding: 35px 30px;
+
+    border: 1px solid #e4eef3;
+
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 100, 130, 0.1);
+}
+
+.service-icon {
+    font-size: 42px;
+
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    color: #123047;
+
+    margin-bottom: 12px;
+}
+
+.service-card p {
+    color: #718391;
+
+    line-height: 1.6;
+}
+
+
+/* ================= ABOUT ================= */
+
+.about-section {
+    padding: 90px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 80px;
+
+    background: #f4fbfd;
+}
+
+.about-content {
+    max-width: 600px;
+}
+
+.about-content p:not(.section-label) {
+    color: #687d8b;
+
+    line-height: 1.7;
+
+    margin-bottom: 15px;
+}
+
+.about-box {
+    width: 400px;
+    height: 300px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dff8fc,
+            #b9edf5
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.big-cross {
+    font-size: 100px;
+
+    line-height: 1;
+
+    color: #0b9bb7;
+}
+
+.about-box h3 {
+    color: #123047;
+
+    font-size: 24px;
+
+    margin-top: 10px;
+}
+
+
+/* ================= CTA ================= */
+
+.cta-section {
+    padding: 80px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #08768f,
+            #0b9bb7
+        );
+
+    color: white;
+}
+
+.cta-section h2 {
+    font-size: 38px;
+
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    color: #d9f8ff;
+
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background: white;
+
+    color: #087d94;
+
+    font-weight: 600;
+}
+
+.cta-button:hover {
+    background: #eafaff;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    padding: 45px 7%;
+
+    background: #102f42;
+
+    color: white;
+
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+footer p {
+    color: #b9cbd4;
+
+    margin-bottom: 15px;
+}
+
+footer .copyright {
+    font-size: 12px;
+
+    margin-top: 25px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-section {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .service-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section {
+        flex-direction: column;
+
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .nav-buttons {
+        gap: 5px;
+    }
+
+    .login-btn,
+    .signup-btn {
+        padding: 8px 10px;
+
+        font-size: 11px;
+    }
+
+    .hero-section {
+        padding: 60px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    .hero-card {
+        width: 100%;
+
+        padding: 30px;
+    }
+
+    .about-box {
+        width: 100%;
+    }
+}
+
+
+/* =========================
+   MAIN FOOTER
+========================= */
+
+.main-footer {
+  background: #28394f;
+  color: #ffffff;
+  padding: 65px 6% 3% ;
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    0.5fr
+    1.8fr
+    1.8fr
+    1.8fr
+    1.8fr
+    1.8fr
+    1.8fr;
+  gap: 35px;
+}
+
+/* Brand */
+
+.footer-brand {
+  padding-right: 20px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.logo-icon {
+  width: 35px;
+  height: 35px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #20b486;
+  color: white;
+
+  border-radius: 8px;
+
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.footer-brand p {
+  color: #c6cfda;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Columns */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-column h4 {
+  color: #ffffff;
+  font-size: 16px;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.footer-column a {
+  color: #c6cfda;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.5;
+
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #20b486;
+}
+
+/* Bottom */
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 50px 0 ;
+
+  padding: 25px  0;
+
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.footer-bottom-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.footer-bottom p {
+  margin: 10px;
+  color: #aeb9c7;
+  font-size: 13px;
+}
+
+
+.footer-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  padding: 15px 0 0;
+}
+
+.footer-bottom p {
+  margin: 0;
+  text-align: center;
+}
+
+
+/* =========================
+   CTA SECTION
+========================= */
+
+.cta-section {
+  text-align: center;
+  padding: 70px 20px;
+
+  background: #eaf7f3;
+}
+
+.cta-section h2 {
+  margin-bottom: 10px;
+  color: #172b4d;
+}
+
+.cta-section p {
+  color: #667085;
+  margin-bottom: 25px;
+}
+
+.cta-button {
+  background: #20b486;
+  color: white;
+
+  border: none;
+  border-radius: 7px;
+
+  padding: 13px 25px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #179b73;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+  .footer-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footer-brand {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-footer {
+    padding: 45px 25px 0;
+  }
+
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .footer-brand {
+    grid-column: span 2;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand {
+    grid-column: span 1;
+  }
+}
+
+
+
+//for image css
+
+.about-box {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 300px;
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius:25px
+}
+
+
+
+//for downaload option palystore and link
+
+/* =========================
+   DOWNLOAD APP SECTION
+========================= */
+
+.download-app-section {
+  max-width: 1200px;
+  margin: 70px auto;
+  padding: 60px 70px;
+
+  background: #eaf7f3;
+
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 60px;
+
+  overflow: hidden;
+}
+
+.download-app-content {
+  flex: 1;
+}
+
+.download-app-content .section-label {
+  color: #20a77a;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.download-app-content h2 {
+  font-size: 38px;
+  color: #172b4d;
+  margin: 0 0 18px;
+}
+
+.download-description {
+  color: #667085;
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 25px;
+}
+
+.download-app-content h4 {
+  color: #172b4d;
+  margin-bottom: 12px;
+}
+
+/* Phone Input */
+
+.phone-input-wrapper {
+  width: 100%;
+  max-width: 500px;
+
+  display: flex;
+  align-items: center;
+
+  background: white;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  margin-bottom: 25px;
+}
+
+.country-code {
+  padding: 14px 12px;
+
+  color: #344054;
+  font-size: 15px;
+
+  border-right: 1px solid #e4e7ec;
+}
+
+.phone-input-wrapper input {
+  flex: 1;
+
+  border: none;
+  outline: none;
+
+  padding: 14px;
+
+  font-size: 15px;
+
+  min-width: 0;
+}
+
+.send-sms-btn {
+  padding: 14px 20px;
+
+  border: none;
+
+  background: #20a77a;
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.send-sms-btn:hover {
+  background: #168b65;
+}
+
+/* App Store Buttons */
+
+.app-store-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.store-button {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 155px;
+
+  padding: 10px 15px;
+
+  background: #111827;
+  color: white;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.store-button:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+.store-icon {
+  font-size: 25px;
+}
+
+.store-button span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.store-button small {
+  font-size: 9px;
+  color: #d0d5dd;
+}
+
+.store-button strong {
+  font-size: 15px;
+}
+
+/* Phone Mockup */
+
+.download-app-image {
+  width: 300px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-mockup {
+  width: 220px;
+  height: 430px;
+
+  background: #172b4d;
+
+  border-radius: 35px;
+
+  padding: 10px;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+  transform: rotate(3deg);
+}
+
+.phone-screen {
+  height: 100%;
+
+  background: white;
+
+  border-radius: 27px;
+
+  padding: 35px 18px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+}
+
+.phone-logo {
+  width: 55px;
+  height: 55px;
+
+  margin: 10px auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #20a77a;
+  color: white;
+
+  border-radius: 15px;
+
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.phone-screen h3 {
+  margin: 10px 0 5px;
+
+  color: #172b4d;
+}
+
+.phone-screen > p {
+  color: #667085;
+  font-size: 12px;
+}
+
+.app-card {
+  margin-top: 20px;
+
+  padding: 14px;
+
+  text-align: left;
+
+  background: #eefaf6;
+
+  border-radius: 10px;
+}
+
+.app-card strong {
+  display: block;
+
+  color: #172b4d;
+
+  font-size: 13px;
+}
+
+.app-card span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #667085;
+
+  font-size: 10px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .download-app-section {
+    padding: 45px 30px;
+
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .download-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .phone-input-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .app-store-buttons {
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 550px) {
+
+  .download-app-section {
+    margin: 40px 15px;
+    padding: 35px 20px;
+  }
+
+  .download-app-content h2 {
+    font-size: 28px;
+  }
+
+  .phone-input-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .phone-input-wrapper input {
+    width: 100%;
+  }
+
+  .send-sms-btn {
+    width: 100%;
+  }
+
+  .app-store-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .store-button {
+    width: 180px;
+  }
+
+}
+
+
+.download-app-section {
+  max-width: 1200px;
+  margin: 70px auto;
+  padding: 60px 70px;
+
+  background: #eaf7f3;
+  border-radius: 30px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 60px;
+}
+
+.download-app-content {
+  flex: 1;
+}
+
+.download-app-image {
+  flex: 0 0 300px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+/* =========================================================
+   GLOBAL SCROLL FIX
+========================================================= */
+
+html {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.hospital-page {
+  width: 100%;
+  min-height: 100vh;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Prevent pages/components from blocking browser scroll */
+div,
+main,
+section {
+  max-height: none;
+}
+
+/* Dashboard/page containers */
+.dashboard,
+.admin-dashboard,
+.doctor-dashboard,
+.patient-dashboard,
+.page-container,
+.main-content,
+.content {
+  min-height: 100vh;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+

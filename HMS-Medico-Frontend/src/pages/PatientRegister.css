@@ -1,0 +1,637 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.patient-register-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* =========================================
+   LEFT SIDE
+========================================= */
+
+.patient-register-image {
+  width: 50%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #005d7a,
+      #009688
+    );
+}
+
+.patient-register-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.register-image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.48),
+      rgba(15, 23, 42, 0.24)
+    );
+}
+
+.register-image-content {
+  position: absolute;
+
+  top: 70%;
+  left: 50%;
+
+  width: 75%;
+
+  transform: translate(-50%, -50%);
+
+  color: white;
+}
+
+.register-brand-logo {
+  width: 65px;
+  height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  border-radius: 18px;
+
+  font-size: 32px;
+
+  margin-bottom: 25px;
+
+  backdrop-filter: blur(5px);
+}
+
+.register-image-content h1 {
+  font-size: 46px;
+
+  margin: 0 0 15px;
+
+  font-weight: 700;
+}
+
+.register-image-content p {
+  font-size: 19px;
+
+  line-height: 1.6;
+
+  max-width: 480px;
+
+  color:
+    rgba(255, 255, 255, 0.92);
+}
+
+.register-image-features {
+  margin-top: 35px;
+}
+
+.register-image-features div {
+  display: flex;
+
+  align-items: center;
+
+  margin-bottom: 18px;
+
+  font-size: 16px;
+}
+
+.register-image-features span {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 12px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   RIGHT SIDE
+   ONLY THIS SIDE SCROLLS
+========================================= */
+
+.patient-register-form-side {
+  width: 50%;
+  height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  padding: 40px;
+
+  background: #f8fbfc;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  flex-shrink: 0;
+
+  scrollbar-width: thin;
+  scrollbar-color: #b8cdd1 transparent;
+}
+
+/* Chrome / Edge / Safari */
+
+.patient-register-form-side::-webkit-scrollbar {
+  width: 7px;
+}
+
+.patient-register-form-side::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.patient-register-form-side::-webkit-scrollbar-thumb {
+  background: #b8cdd1;
+  border-radius: 10px;
+}
+
+.patient-register-form-side::-webkit-scrollbar-thumb:hover {
+  background: #008c95;
+}
+
+/* =========================================
+   REGISTER CARD
+========================================= */
+
+.patient-register-card {
+  width: 100%;
+  max-width: 460px;
+
+  height: fit-content;
+
+  margin: auto 0;
+
+  padding: 10px 0 30px;
+}
+
+.patient-register-card h2 {
+  margin: 0;
+
+  color: #16323f;
+
+  font-size: 34px;
+
+  font-weight: 700;
+}
+
+.register-subtitle {
+  margin-top: 10px;
+
+  margin-bottom: 30px;
+
+  color: #718096;
+
+  font-size: 15px;
+}
+
+/* =========================================
+   INPUT GROUP
+========================================= */
+
+.register-input-group {
+  margin-bottom: 18px;
+}
+
+.register-input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #263f4a;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.register-input-group input,
+.register-input-group select {
+  width: 100%;
+
+  padding: 13px 15px;
+
+  border: 1px solid #d8e1e5;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: white;
+
+  font-size: 15px;
+
+  color: #263f4a;
+
+  transition: 0.2s;
+}
+
+.register-input-group input:focus,
+.register-input-group select:focus {
+  border-color: #0097a7;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(0, 151, 167, 0.1);
+}
+
+.register-input-group input::placeholder {
+  color: #a4afb5;
+}
+
+.register-input-group input:disabled {
+  background: #f1f5f7;
+
+  color: #52656d;
+
+  cursor: not-allowed;
+}
+
+/* =========================================
+   SEX + AGE
+========================================= */
+
+.register-row {
+  display: flex;
+
+  gap: 15px;
+
+  width: 100%;
+}
+
+.register-row .register-input-group {
+  flex: 1;
+}
+
+/* =========================================
+   MOBILE NUMBER
+========================================= */
+
+.mobile-input-row {
+  display: flex;
+
+  align-items: stretch;
+
+  gap: 10px;
+
+  width: 100%;
+}
+
+.mobile-input-row input {
+  flex: 1;
+
+  min-width: 0;
+}
+
+/* =========================================
+   MOBILE VERIFIED
+========================================= */
+
+.mobile-verified {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 10px;
+
+  padding: 10px 12px;
+
+  border-radius: 8px;
+
+  background: #ecfdf5;
+
+  border: 1px solid #a7f3d0;
+
+  color: #047857;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.mobile-verified span {
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #10b981;
+
+  color: white;
+
+  font-size: 12px;
+}
+
+/* =========================================
+   REGISTER BUTTON
+========================================= */
+
+.register-button {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #008c95,
+      #006f7a
+    );
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.register-button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 18px
+    rgba(0, 111, 122, 0.25);
+}
+
+.register-button:disabled {
+  opacity: 0.7;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+/* =========================================
+   ERROR
+========================================= */
+
+.register-error {
+  padding: 12px 14px;
+
+  margin-bottom: 20px;
+
+  border-radius: 7px;
+
+  background: #fff0f0;
+
+  border: 1px solid #ffcaca;
+
+  color: #c62828;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.register-divider {
+  display: flex;
+
+  align-items: center;
+
+  margin: 25px 0;
+
+  color: #a0aeb5;
+}
+
+.register-divider::before,
+.register-divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #e0e6e9;
+}
+
+.register-divider span {
+  padding: 0 15px;
+
+  font-size: 12px;
+}
+
+/* =========================================
+   LOGIN TEXT
+========================================= */
+
+.register-login-text {
+  text-align: center;
+
+  color: #718096;
+
+  font-size: 14px;
+}
+
+.register-login-text span {
+  margin-left: 5px;
+
+  color: #008c95;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.register-login-text span:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.register-back-button {
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 12px;
+
+  border: 1px solid #d8e1e5;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #344054;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.register-back-button:hover {
+  background: #f1f7f8;
+
+  border-color: #008c95;
+
+  color: #008c95;
+}
+
+/* =========================================
+   MOBILE LOGO
+========================================= */
+
+.register-mobile-logo {
+  display: none;
+}
+
+/* =========================================
+   TABLET / MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .patient-register-page {
+    height: 100vh;
+
+    overflow: hidden;
+  }
+
+  .patient-register-image {
+    display: none;
+  }
+
+  .patient-register-form-side {
+    width: 100%;
+
+    height: 100vh;
+
+    padding: 25px;
+
+    overflow-y: auto;
+
+    align-items: flex-start;
+  }
+
+  .patient-register-card {
+    max-width: 500px;
+
+    margin: 20px auto 40px;
+
+    padding-bottom: 30px;
+  }
+
+  .register-mobile-logo {
+    display: flex;
+
+    width: 55px;
+    height: 55px;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #e4f5f5;
+
+    border-radius: 15px;
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+  }
+
+  .patient-register-card h2 {
+    font-size: 29px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .patient-register-form-side {
+    padding: 20px;
+  }
+
+  .patient-register-card {
+    margin: 10px auto 30px;
+  }
+
+  .patient-register-card h2 {
+    font-size: 26px;
+  }
+
+  .register-subtitle {
+    margin-bottom: 25px;
+  }
+
+  .register-row {
+    flex-direction: column;
+
+    gap: 0;
+  }
+
+  .mobile-input-row {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+}

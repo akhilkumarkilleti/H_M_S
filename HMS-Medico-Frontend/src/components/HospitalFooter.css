@@ -1,0 +1,232 @@
+/* =====================================================
+   PAGE LAYOUT
+===================================================== */
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  width: 100%;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.main-footer {
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+  background: #071b2b;
+  color: white;
+}
+
+
+/* =====================================================
+   FOOTER CONTAINER
+===================================================== */
+
+.footer-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 50px 40px;
+
+  display: grid;
+  grid-template-columns: 1.5fr repeat(6, 1fr);
+  gap: 35px;
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.footer-brand {
+  padding-right: 20px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.footer-logo-icon {
+  color: #19c7b5;
+  font-size: 30px;
+}
+
+.footer-brand p {
+  margin-top: 15px;
+  color: #b8c5ce;
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   FOOTER COLUMNS
+===================================================== */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-column h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: white;
+}
+
+.footer-column a {
+  color: #b8c5ce;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #19c7b5;
+}
+
+/* SOCIAL */
+
+.social-icons { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+.social-icons a { width: 30px; height: 32px; display: flex; align-items: center; justify-content: center; position: relative; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: white; text-decoration: none; transition: width 0.3s ease; white-space: nowrap; }
+
+.social-icons a::after { content: attr(data-text); position: absolute; left: 50%; top: 50%; transform: translateY(-50%); opacity: 0; visibility: hidden; color: white; transition: opacity 0.3s ease; }
+
+.social-icons a:hover { width: 40px; border-radius: 20px; }
+
+.social-icons a:hover::after { left: 35px; opacity: 1; visibility: visible; }
+
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+
+  padding: 20px 40px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom div {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-bottom a {
+  color: #b8c5ce;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #b8c5ce;
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   CALLBACK
+===================================================== */
+
+.footer-callback {
+  position: fixed;
+
+  right: 20px;
+  bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+
+  background: #19c7b5;
+  color: white;
+
+  border-radius: 30px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+
+  z-index: 1000;
+}
+
+.callback-icon {
+  font-size: 20px;
+}
+
+.footer-callback small {
+  display: block;
+  font-size: 11px;
+}
+
+.footer-callback strong {
+  display: block;
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .footer-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-search {
+    max-width: 100%;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    padding: 35px 20px;
+  }
+
+  .footer-middle {
+    padding: 25px 20px;
+  }
+
+  .footer-bottom {
+    padding: 20px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .footer-callback {
+    right: 10px;
+    bottom: 10px;
+  }
+
+}

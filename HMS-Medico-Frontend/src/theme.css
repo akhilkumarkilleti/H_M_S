@@ -1,0 +1,1924 @@
+/* =========================================================
+   THEME LAYER — LIGHT / DARK
+   ---------------------------------------------------------
+   Loaded LAST (after glossy.css). Light is the default and is
+   identical to the existing glossy look. Dark is a cohesive
+   medical navy/teal theme. Selectors are prefixed with
+   html[data-theme="dark"] (specificity 0,2,1) so they beat the
+   glossy `body .x` rules (0,1,1), page stylesheets and the
+   runtime-injected component <style> blocks (0,1,0).
+   Only surface paint changes — layout, copy, data and behavior
+   are untouched.
+   ========================================================= */
+
+:root {
+  --th-bg: #f3f8fb;
+  --th-surface: #ffffff;
+  --th-heading: #123e5a;
+  --th-text: #26485e;
+  --th-muted: #648092;
+  --th-teal: #0b9ca3;
+  --th-line: rgba(11, 120, 179, 0.14);
+
+  /* Dashboard tokens — light values match the existing inline palette */
+  --db-bg: #f4f8fb;
+  --db-surface: #ffffff;
+  --db-surface-2: #f8fafc;
+  --db-border: #e4e7ec;
+  --db-border-strong: #d0d5dd;
+  --db-heading: #16324f;
+  --db-text: #344054;
+  --db-muted: #667085;
+  --db-faint: #98a2b3;
+  --db-input-bg: #ffffff;
+  --db-blue-bg: #e8f4ff;
+  --db-blue-text: #1769aa;
+  --db-blue-border: #bfdbfe;
+  --db-green-bg: #d1e7dd;
+  --db-green-text: #0f5132;
+  --db-green-border: #a7f3d0;
+  --db-amber-bg: #fff3cd;
+  --db-amber-text: #856404;
+  --db-amber-border: #ffe69c;
+  --db-red-bg: #f8d7da;
+  --db-red-text: #842029;
+  --db-red-border: #fecaca;
+  --db-purple-bg: #eee5ff;
+  --db-purple-text: #6842a5;
+  --db-cyan-bg: #ecfeff;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --th-bg: #0a1622;
+  --th-bg-2: #0d1b29;
+  --th-surface: #10222f;
+  --th-surface-2: #14303f;
+  --th-surface-3: #183a4a;
+  --th-line: rgba(125, 190, 220, 0.16);
+  --th-line-soft: rgba(125, 190, 220, 0.09);
+  --th-heading: #eaf6fa;
+  --th-text: #c2d6e2;
+  --th-muted: #8aa4b5;
+  --th-teal: #22c3c9;
+  --th-teal-bright: #3ad6dc;
+  --th-blue: #4cc3ff;
+  --th-mint: #2dd4bf;
+  --th-amber: #ff8a3d;
+  --th-green: #2fd39a;
+
+  --th-spec: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --th-card-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 16px 36px -18px rgba(0, 0, 0, 0.65);
+  --th-card-shadow-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.45),
+    0 26px 54px -20px rgba(0, 0, 0, 0.75);
+  --th-ring: 0 0 0 3px rgba(34, 195, 201, 0.22);
+
+  /* Dashboard tokens — dark */
+  --db-bg: #0a1622;
+  --db-surface: #10222f;
+  --db-surface-2: #14303f;
+  --db-border: rgba(125, 190, 220, 0.16);
+  --db-border-strong: rgba(125, 190, 220, 0.28);
+  --db-heading: #eaf6fa;
+  --db-text: #c2d6e2;
+  --db-muted: #8aa4b5;
+  --db-faint: #6b8496;
+  --db-input-bg: #0e2130;
+  --db-blue-bg: rgba(76, 195, 255, 0.14);
+  --db-blue-text: #4cc3ff;
+  --db-blue-border: rgba(76, 195, 255, 0.35);
+  --db-green-bg: rgba(47, 211, 154, 0.14);
+  --db-green-text: #2fd39a;
+  --db-green-border: rgba(47, 211, 154, 0.35);
+  --db-amber-bg: rgba(255, 138, 61, 0.14);
+  --db-amber-text: #ffb066;
+  --db-amber-border: rgba(255, 138, 61, 0.35);
+  --db-red-bg: rgba(220, 60, 60, 0.16);
+  --db-red-text: #ff9b9b;
+  --db-red-border: rgba(255, 120, 120, 0.35);
+  --db-purple-bg: rgba(160, 120, 255, 0.16);
+  --db-purple-text: #c4a8ff;
+  --db-cyan-bg: rgba(34, 195, 201, 0.14);
+}
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background: none;
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle-track {
+  position: relative;
+  display: block;
+  width: 62px;
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #c3e5f6 0%, #87ceeb 100%);
+  border: 1px solid rgba(11, 120, 179, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 2px rgba(13, 43, 68, 0.14),
+    0 2px 6px -2px rgba(13, 43, 68, 0.3);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle.is-dark .theme-toggle-track {
+  background: linear-gradient(180deg, #16456b 0%, #0d2b44 100%);
+  border-color: rgba(102, 209, 207, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.45),
+    0 2px 8px -2px rgba(0, 0, 0, 0.55);
+}
+
+.theme-toggle-hint {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(18, 62, 90, 0.5);
+  transition: color 0.3s ease;
+}
+
+.theme-toggle-hint-sun { left: 9px; }
+.theme-toggle-hint-moon { right: 9px; }
+
+.theme-toggle.is-dark .theme-toggle-hint {
+  color: rgba(234, 246, 250, 0.38);
+}
+
+.theme-toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px
+  ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #ffffff 0%, #dceef7 100%);
+  color: #e25c0b;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 5px rgba(13, 43, 68, 0.4);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.theme-toggle.is-dark .theme-toggle-knob {
+  transform: translateX(30px);
+  background: linear-gradient(160deg, #1e4a6b 0%, #12395b 100%);
+  color: #66d1cf;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.55),
+    0 0 14px rgba(102, 209, 207, 0.4);
+}
+
+.theme-toggle-knob-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover .theme-toggle-track {
+  filter: brightness(1.06);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid rgba(11, 156, 163, 0.75);
+  outline-offset: 2px;
+}
+
+/* Floating variant for pages without the shared navbar */
+.theme-toggle-floating {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2000;
+  padding: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(11, 120, 179, 0.16);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px -8px rgba(13, 43, 68, 0.4);
+}
+
+html[data-theme="dark"] .theme-toggle-floating {
+  background: rgba(13, 27, 42, 0.78);
+  border-color: rgba(102, 209, 207, 0.22);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.65);
+}
+
+/* Only one visible toggle: hide the floating one when the navbar is present */
+body:has(.common-navbar) .theme-toggle-floating {
+  display: none;
+}
+
+/* Brief, smooth cross-fade while switching themes */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    fill 0.35s ease,
+    stroke 0.35s ease !important;
+}
+
+/* =========================================================
+   DARK — BASE + AMBIENT DEPTH
+   ========================================================= */
+
+html[data-theme="dark"] body {
+  background-color: var(--th-bg);
+  background-image:
+    radial-gradient(1100px 520px at 88% -8%, rgba(34, 195, 201, 0.1), transparent 60%),
+    radial-gradient(900px 480px at -6% 4%, rgba(76, 195, 255, 0.07), transparent 55%);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .hospital-page,
+html[data-theme="dark"] .public-layout {
+  background: transparent;
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .services-section {
+  background-color: var(--th-bg-2);
+  background-image:
+    radial-gradient(900px 360px at 50% -10%, rgba(34, 195, 201, 0.07), transparent 62%);
+}
+
+html[data-theme="dark"] .about-section {
+  background-color: var(--th-bg);
+  background-image:
+    radial-gradient(760px 420px at 100% 0%, rgba(76, 195, 255, 0.06), transparent 60%);
+}
+
+html[data-theme="dark"] .rare-cases-section {
+  background-image:
+    radial-gradient(900px 400px at 0% 0%, rgba(45, 212, 191, 0.06), transparent 58%);
+}
+
+html[data-theme="dark"] .download-app-section {
+  background-color: var(--th-bg-2);
+  background-image:
+    radial-gradient(720px 380px at 92% 8%, rgba(34, 195, 201, 0.09), transparent 60%);
+}
+
+/* =========================================================
+   DARK — SHARED CHROME
+   ========================================================= */
+
+html[data-theme="dark"] .common-announcement {
+  background: linear-gradient(90deg, #071b2b 0%, #0b3a5c 100%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .common-utility-bar {
+  background: linear-gradient(180deg, #0e2c40 0%, #0b2334 100%);
+  border-bottom: 1px solid rgba(102, 209, 207, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .common-utility-bar button,
+html[data-theme="dark"] .common-utility-bar a {
+  color: #a9c6d8;
+}
+
+html[data-theme="dark"] .common-utility-bar button:hover,
+html[data-theme="dark"] .common-utility-bar a:hover {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .common-navbar {
+  background: linear-gradient(180deg, rgba(16, 34, 47, 0.92) 0%, rgba(13, 27, 42, 0.88) 100%);
+  border-bottom: 1px solid rgba(102, 209, 207, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 10px 30px -18px rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme="dark"] .common-logo strong {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .common-logo small {
+  color: var(--th-muted);
+}
+
+html[data-theme="dark"] .common-nav-button {
+  color: #c2d6e2;
+}
+
+html[data-theme="dark"] .common-nav-button:hover,
+html[data-theme="dark"] .common-nav-button.active {
+  background: linear-gradient(180deg, rgba(34, 195, 201, 0.14) 0%, rgba(34, 195, 201, 0.08) 100%);
+  color: var(--th-teal-bright);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .main-arrow {
+  color: var(--th-teal);
+}
+
+html[data-theme="dark"] .common-dropdown,
+html[data-theme="dark"] .nested-dropdown {
+  background: linear-gradient(180deg, rgba(20, 48, 63, 0.98) 0%, rgba(16, 34, 47, 0.97) 100%);
+  border: 1px solid rgba(125, 190, 220, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 22px 50px -20px rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme="dark"] .dropdown-simple-button,
+html[data-theme="dark"] .dropdown-parent-button,
+html[data-theme="dark"] .nested-dropdown-button,
+html[data-theme="dark"] .common-login-dropdown button {
+  background: transparent;
+  color: #c2d6e2;
+}
+
+html[data-theme="dark"] .dropdown-simple-button:hover,
+html[data-theme="dark"] .dropdown-parent-button:hover,
+html[data-theme="dark"] .dropdown-parent-button.submenu-hovered,
+html[data-theme="dark"] .nested-dropdown-button:hover,
+html[data-theme="dark"] .common-login-dropdown button:hover {
+  background: linear-gradient(180deg, rgba(34, 195, 201, 0.14) 0%, rgba(34, 195, 201, 0.07) 100%);
+  color: var(--th-teal-bright);
+}
+
+html[data-theme="dark"] .nested-dropdown-title {
+  color: var(--th-teal);
+  border-bottom: 1px solid rgba(125, 190, 220, 0.14);
+}
+
+html[data-theme="dark"] .submenu-arrow,
+html[data-theme="dark"] .nested-arrow {
+  color: var(--th-teal);
+}
+
+/* =========================================================
+   DARK — LANDING TEXT + CARDS
+   ========================================================= */
+
+html[data-theme="dark"] .services-section > h2,
+html[data-theme="dark"] .about-content h2,
+html[data-theme="dark"] .service-card h3,
+html[data-theme="dark"] .stat-card h3,
+html[data-theme="dark"] .download-app-content h2,
+html[data-theme="dark"] .download-app-content h4 {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .section-description,
+html[data-theme="dark"] .service-card p,
+html[data-theme="dark"] .about-content p,
+html[data-theme="dark"] .download-description {
+  color: var(--th-muted);
+}
+
+html[data-theme="dark"] .section-label {
+  color: var(--th-teal);
+}
+
+html[data-theme="dark"] .service-card,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .info-card,
+html[data-theme="dark"] .department-card,
+html[data-theme="dark"] .facility-card,
+html[data-theme="dark"] .doctor-card,
+html[data-theme="dark"] .service-item,
+html[data-theme="dark"] .fd-why-card,
+html[data-theme="dark"] .article-list-item,
+html[data-theme="dark"] .media-card,
+html[data-theme="dark"] .investor-card,
+html[data-theme="dark"] .financial-card,
+html[data-theme="dark"] .resource-card,
+html[data-theme="dark"] .why-item,
+html[data-theme="dark"] .detail-box,
+html[data-theme="dark"] .app-card {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid var(--th-line);
+  box-shadow: var(--th-card-shadow);
+}
+
+html[data-theme="dark"] .service-card:hover,
+html[data-theme="dark"] .stat-card:hover,
+html[data-theme="dark"] .info-card:hover,
+html[data-theme="dark"] .department-card:hover,
+html[data-theme="dark"] .facility-card:hover,
+html[data-theme="dark"] .doctor-card:hover,
+html[data-theme="dark"] .fd-why-card:hover,
+html[data-theme="dark"] .media-card:hover,
+html[data-theme="dark"] .investor-card:hover,
+html[data-theme="dark"] .financial-card:hover,
+html[data-theme="dark"] .resource-card:hover,
+html[data-theme="dark"] .why-item:hover {
+  border-color: rgba(34, 195, 201, 0.45);
+  box-shadow: var(--th-card-shadow-hover);
+}
+
+html[data-theme="dark"] .service-icon {
+  background: linear-gradient(160deg, rgba(34, 195, 201, 0.18) 0%, rgba(34, 195, 201, 0.08) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(34, 195, 201, 0.2),
+    0 6px 14px -8px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] .fd-doctor-card,
+html[data-theme="dark"] .rare-case-card {
+  border: 1px solid var(--th-line);
+  box-shadow: var(--th-card-shadow);
+}
+
+html[data-theme="dark"] .fd-doctor-card:hover,
+html[data-theme="dark"] .rare-case-card:hover {
+  border-color: rgba(34, 195, 201, 0.45);
+  box-shadow: var(--th-card-shadow-hover);
+}
+
+html[data-theme="dark"] .fd-image-container {
+  background: linear-gradient(135deg, #14303f 0%, #0e2130 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="dark"] .hero-card {
+  background:
+    radial-gradient(420px 220px at 50% -10%, rgba(34, 195, 201, 0.14), transparent 65%),
+    linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid var(--th-line);
+  box-shadow: var(--th-card-shadow);
+}
+
+html[data-theme="dark"] .hospital-symbol {
+  background: linear-gradient(160deg, rgba(45, 212, 191, 0.2) 0%, rgba(45, 212, 191, 0.08) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0 1px rgba(45, 212, 191, 0.25),
+    0 10px 24px -10px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] .about-box {
+  border: 1px solid rgba(125, 190, 220, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 26px 60px -24px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================================
+   DARK — SECONDARY BUTTONS + INPUTS
+   (primary teal/green/amber glossy buttons already read well
+   on dark and are intentionally kept)
+   ========================================================= */
+
+html[data-theme="dark"] .secondary-btn,
+html[data-theme="dark"] .hero-button.secondary,
+html[data-theme="dark"] .press-button.outline,
+html[data-theme="dark"] .fd-modal-cancel,
+html[data-theme="dark"] .department-toggle {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid rgba(34, 195, 201, 0.5);
+  color: var(--th-teal-bright);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 12px -8px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] .secondary-btn:hover,
+html[data-theme="dark"] .hero-button.secondary:hover,
+html[data-theme="dark"] .press-button.outline:hover,
+html[data-theme="dark"] .fd-modal-cancel:hover,
+html[data-theme="dark"] .department-toggle:hover {
+  background: linear-gradient(180deg, #16bcc4 0%, #0b9ca3 60%, #087f87 100%);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+html[data-theme="dark"] .admin-input-group input,
+html[data-theme="dark"] .patient-input-group input,
+html[data-theme="dark"] .register-input-group input,
+html[data-theme="dark"] .register-input-group select,
+html[data-theme="dark"] .enquiry-form-group input,
+html[data-theme="dark"] .enquiry-form-group textarea,
+html[data-theme="dark"] .fd-search-box input,
+html[data-theme="dark"] .article-search-control input,
+html[data-theme="dark"] .phone-input-wrapper input,
+html[data-theme="dark"] .rare-search input {
+  background: linear-gradient(180deg, #0e2130 0%, #0b1a27 100%);
+  border: 1px solid rgba(125, 190, 220, 0.22);
+  color: var(--th-heading);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .admin-input-group input:focus,
+html[data-theme="dark"] .patient-input-group input:focus,
+html[data-theme="dark"] .register-input-group input:focus,
+html[data-theme="dark"] .register-input-group select:focus,
+html[data-theme="dark"] .enquiry-form-group input:focus,
+html[data-theme="dark"] .enquiry-form-group textarea:focus,
+html[data-theme="dark"] .fd-search-box input:focus,
+html[data-theme="dark"] .article-search-control input:focus,
+html[data-theme="dark"] .phone-input-wrapper input:focus,
+html[data-theme="dark"] .rare-search input:focus {
+  border-color: var(--th-teal);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), var(--th-ring);
+}
+
+html[data-theme="dark"] .admin-input-group input::placeholder,
+html[data-theme="dark"] .patient-input-group input::placeholder,
+html[data-theme="dark"] .register-input-group input::placeholder,
+html[data-theme="dark"] .enquiry-form-group input::placeholder,
+html[data-theme="dark"] .enquiry-form-group textarea::placeholder {
+  color: #5e7a8c;
+}
+
+html[data-theme="dark"] .fd-search-box,
+html[data-theme="dark"] .article-search-control,
+html[data-theme="dark"] .rare-search {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 22px -16px rgba(0, 0, 0, 0.6);
+}
+
+html[data-theme="dark"] .phone-input-wrapper {
+  background: #0e2130;
+  border: 1px solid rgba(125, 190, 220, 0.22);
+}
+
+html[data-theme="dark"] .country-code {
+  color: var(--th-text);
+  border-right-color: rgba(125, 190, 220, 0.18);
+}
+
+/* =========================================================
+   DARK — AUTH (LOGIN / REGISTER / FORGOT)
+   ========================================================= */
+
+html[data-theme="dark"] .admin-login-page,
+html[data-theme="dark"] .patient-auth-page,
+html[data-theme="dark"] .patient-register-page {
+  background: var(--th-bg);
+}
+
+html[data-theme="dark"] .admin-login-card,
+html[data-theme="dark"] .patient-login-card,
+html[data-theme="dark"] .patient-register-card {
+  background:
+    radial-gradient(520px 240px at 50% -12%, rgba(34, 195, 201, 0.12), transparent 62%),
+    linear-gradient(180deg, rgba(20, 48, 63, 0.96) 0%, rgba(16, 34, 47, 0.95) 100%);
+  border: 1px solid rgba(125, 190, 220, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 30px 70px -30px rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme="dark"] .admin-login-form-side,
+html[data-theme="dark"] .patient-auth-form-side,
+html[data-theme="dark"] .patient-register-form-side {
+  background:
+    radial-gradient(700px 420px at 100% 0%, rgba(76, 195, 255, 0.07), transparent 60%),
+    var(--th-bg);
+}
+
+html[data-theme="dark"] .admin-login-card h2,
+html[data-theme="dark"] .patient-login-card h2,
+html[data-theme="dark"] .patient-register-card h2 {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .admin-subtitle,
+html[data-theme="dark"] .patient-subtitle,
+html[data-theme="dark"] .register-subtitle,
+html[data-theme="dark"] .patient-signup-text,
+html[data-theme="dark"] .patient-divider {
+  color: var(--th-muted);
+}
+
+html[data-theme="dark"] .admin-input-group label,
+html[data-theme="dark"] .patient-input-group label,
+html[data-theme="dark"] .register-input-group label,
+html[data-theme="dark"] .enquiry-form-group label {
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .patient-forgot-link,
+html[data-theme="dark"] .patient-signup-text span,
+html[data-theme="dark"] .admin-back span {
+  color: var(--th-teal);
+}
+
+html[data-theme="dark"] .patient-divider::before,
+html[data-theme="dark"] .patient-divider::after {
+  background: rgba(125, 190, 220, 0.18);
+}
+
+html[data-theme="dark"] .patient-back-button,
+html[data-theme="dark"] .register-back-button {
+  background: #14303f;
+  border-color: rgba(125, 190, 220, 0.22);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .admin-security {
+  background: linear-gradient(180deg, rgba(34, 195, 201, 0.12) 0%, rgba(34, 195, 201, 0.06) 100%);
+  border: 1px solid rgba(34, 195, 201, 0.2);
+  color: var(--th-muted);
+}
+
+html[data-theme="dark"] .admin-error,
+html[data-theme="dark"] .patient-login-error,
+html[data-theme="dark"] .register-error {
+  background: rgba(220, 60, 60, 0.12);
+  border-color: rgba(255, 120, 120, 0.35);
+  color: #ff9b9b;
+}
+
+html[data-theme="dark"] .patient-reset-success {
+  background: rgba(47, 211, 154, 0.12);
+  color: var(--th-green);
+}
+
+html[data-theme="dark"] .admin-mobile-logo,
+html[data-theme="dark"] .register-mobile-logo,
+html[data-theme="dark"] .patient-mobile-logo {
+  background: linear-gradient(160deg, rgba(34, 195, 201, 0.2) 0%, rgba(34, 195, 201, 0.08) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 8px 18px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================================
+   DARK — MODALS / DRAWERS / POPUPS
+   ========================================================= */
+
+html[data-theme="dark"] .fd-profile-modal,
+html[data-theme="dark"] .success-popup {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid rgba(125, 190, 220, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 40px 90px -30px rgba(0, 0, 0, 0.75);
+}
+
+html[data-theme="dark"] .enquiry-side-drawer {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  box-shadow: -18px 0 60px -20px rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme="dark"] .enquiry-drawer-header {
+  background: linear-gradient(180deg, #14303f 88%, rgba(20, 48, 63, 0.96));
+  border-bottom: 1px solid rgba(125, 190, 220, 0.14);
+}
+
+html[data-theme="dark"] .enquiry-drawer-header h2,
+html[data-theme="dark"] .enquiry-drawer-about h3 {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .enquiry-drawer-label,
+html[data-theme="dark"] .enquiry-drawer-about h4 {
+  color: var(--th-teal);
+}
+
+html[data-theme="dark"] .enquiry-drawer-about {
+  background: linear-gradient(180deg, rgba(34, 195, 201, 0.1) 0%, rgba(34, 195, 201, 0.04) 100%);
+  border: 1px solid rgba(34, 195, 201, 0.18);
+}
+
+html[data-theme="dark"] .enquiry-drawer-about p,
+html[data-theme="dark"] .enquiry-form-description {
+  color: var(--th-muted);
+}
+
+html[data-theme="dark"] .enquiry-close-button {
+  background: #14303f;
+  border-color: rgba(125, 190, 220, 0.22);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .enquiry-close-button:hover {
+  background: rgba(34, 195, 201, 0.18);
+  color: var(--th-teal-bright);
+}
+
+/* =========================================================
+   DARK — HOSPITAL INFORMATION BIO PAGE
+   ========================================================= */
+
+html[data-theme="dark"] .hospital-header {
+  background: var(--th-bg-2);
+}
+
+html[data-theme="dark"] .hospital-logo h1,
+html[data-theme="dark"] .hero-content h2,
+html[data-theme="dark"] .section-heading h2,
+html[data-theme="dark"] .info-card h3,
+html[data-theme="dark"] .department-card h3,
+html[data-theme="dark"] .facility-card h3,
+html[data-theme="dark"] .service-item h3,
+html[data-theme="dark"] .contact-card h3,
+html[data-theme="dark"] .hero-card h3 {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .hospital-logo p,
+html[data-theme="dark"] .header-contact,
+html[data-theme="dark"] .hero-content p,
+html[data-theme="dark"] .about-text p,
+html[data-theme="dark"] .stat-card p,
+html[data-theme="dark"] .info-card p,
+html[data-theme="dark"] .department-card p,
+html[data-theme="dark"] .facility-card p,
+html[data-theme="dark"] .service-item p,
+html[data-theme="dark"] .why-item p,
+html[data-theme="dark"] .contact-card p,
+html[data-theme="dark"] .hero-card p,
+html[data-theme="dark"] .doctor-card p:last-child,
+html[data-theme="dark"] .rating span {
+  color: var(--th-muted);
+}
+
+html[data-theme="dark"] .hero-badge,
+html[data-theme="dark"] .service-item > span,
+html[data-theme="dark"] .doctor-avatar {
+  background: rgba(45, 212, 191, 0.14);
+  color: var(--th-mint);
+}
+
+html[data-theme="dark"] .hero-content h2 span,
+html[data-theme="dark"] .section-heading span,
+html[data-theme="dark"] .small-title,
+html[data-theme="dark"] .stat-card h3,
+html[data-theme="dark"] .doctor-speciality,
+html[data-theme="dark"] .why-item > span {
+  color: var(--th-teal);
+}
+
+html[data-theme="dark"] .light-section {
+  background: var(--th-bg-2);
+}
+
+html[data-theme="dark"] .why-item,
+html[data-theme="dark"] .contact-card {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+}
+
+html[data-theme="dark"] .timing-card {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* =========================================================
+   DARK — ARTICLES PAGE
+   ========================================================= */
+
+html[data-theme="dark"] .articles-page {
+  background: var(--th-bg);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .articles-navbar,
+html[data-theme="dark"] .articles-mobile-menu {
+  background: var(--th-bg-2);
+}
+
+html[data-theme="dark"] .articles-logo-text,
+html[data-theme="dark"] .articles-heading h1,
+html[data-theme="dark"] .article-content h2,
+html[data-theme="dark"] .article-search > label {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .articles-logo-subtext,
+html[data-theme="dark"] .articles-subtitle,
+html[data-theme="dark"] .article-description,
+html[data-theme="dark"] .article-specialization,
+html[data-theme="dark"] .article-search > p,
+html[data-theme="dark"] .articles-nav-link,
+html[data-theme="dark"] .articles-mobile-nav-link {
+  color: var(--th-muted);
+}
+
+html[data-theme="dark"] .articles-nav-link:hover,
+html[data-theme="dark"] .articles-active-nav-link,
+html[data-theme="dark"] .articles-mobile-nav-link:hover,
+html[data-theme="dark"] .articles-mobile-active-link {
+  background: rgba(76, 195, 255, 0.1);
+  color: var(--th-blue);
+}
+
+html[data-theme="dark"] .articles-login-button,
+html[data-theme="dark"] .articles-mobile-login-button,
+html[data-theme="dark"] .articles-menu-button {
+  background: #14303f;
+  color: var(--th-blue);
+}
+
+html[data-theme="dark"] .article-search,
+html[data-theme="dark"] .article-search-empty {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .article-search-control {
+  background: #0e2130;
+}
+
+html[data-theme="dark"] .article-search-control input {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .article-tag {
+  background: rgba(76, 195, 255, 0.1);
+  color: var(--th-blue);
+}
+
+html[data-theme="dark"] .article-number,
+html[data-theme="dark"] .article-source,
+html[data-theme="dark"] .articles-section-label,
+html[data-theme="dark"] .article-search-control > span,
+html[data-theme="dark"] .article-search-control button {
+  color: var(--th-blue);
+}
+
+/* =========================================================
+   DARK — DASHBOARD SHELL (inline-styled frames)
+   ========================================================= */
+
+html[data-theme="dark"] div:has(> aside):has(> main) {
+  background:
+    radial-gradient(1000px 520px at 100% -6%, rgba(34, 195, 201, 0.08), transparent 58%),
+    radial-gradient(820px 460px at -4% 10%, rgba(76, 195, 255, 0.06), transparent 55%),
+    var(--th-bg) !important;
+}
+
+/* =========================================================
+   DARK — SCROLLBARS + FOCUS
+   ========================================================= */
+
+html[data-theme="dark"] {
+  scrollbar-color: rgba(34, 195, 201, 0.5) rgba(125, 190, 220, 0.08);
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: rgba(125, 190, 220, 0.08);
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #22c3c9 0%, #0b9ca3 60%, #087f87 100%);
+  border: 2px solid rgba(10, 22, 34, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #3ad6dc 0%, #22c3c9 60%, #0b9ca3 100%);
+}
+
+html[data-theme="dark"] a:focus-visible,
+html[data-theme="dark"] button:focus-visible,
+html[data-theme="dark"] input:focus-visible,
+html[data-theme="dark"] textarea:focus-visible,
+html[data-theme="dark"] select:focus-visible {
+  outline: 2px solid rgba(34, 195, 201, 0.75);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   DARK — CONTENT PAGES (runtime-injected styles)
+   The treatment / service / public pages each inject their own
+   <style> block with a unique class prefix. Already-dark heroes,
+   CTAs and footers are intentionally left untouched. Only the
+   light surfaces, text, chips, light sections and inputs below
+   are recolored. 19 cancer/organ sub-pages share the .ti-* page.
+   ========================================================= */
+
+/* ---- TreatmentDetailPage (inline styles → --td vars) ---- */
+html[data-theme="dark"] .treatment-detail-page {
+  --td-bg: var(--th-bg);
+  --td-text: var(--th-text);
+  --td-accent: var(--th-teal);
+  --td-surface: #10222f;
+  --td-hero: linear-gradient(135deg, #14303f 0%, #0e2130 100%);
+  --td-shadow: var(--th-card-shadow);
+}
+
+html[data-theme="dark"] .treatment-detail-page h1,
+html[data-theme="dark"] .treatment-detail-page h2,
+html[data-theme="dark"] .treatment-detail-page h3 {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .treatment-detail-page article {
+  border: 1px solid var(--th-line);
+}
+
+/* ---- Root wrappers ---- */
+html[data-theme="dark"] .cancer-page,
+html[data-theme="dark"] .emergency-page,
+html[data-theme="dark"] .gastro-page,
+html[data-theme="dark"] .heart-cardio-page,
+html[data-theme="dark"] .hospital-treatments-wrapper,
+html[data-theme="dark"] .kidney-page,
+html[data-theme="dark"] .klt-page,
+html[data-theme="dark"] .maternity-page,
+html[data-theme="dark"] .orthopedic-page,
+html[data-theme="dark"] .neurology-page,
+html[data-theme="dark"] .health-checkup-page,
+html[data-theme="dark"] .health-donations-page,
+html[data-theme="dark"] .health-home-page,
+html[data-theme="dark"] .ambulance-page,
+html[data-theme="dark"] .media-page,
+html[data-theme="dark"] .investors-page,
+html[data-theme="dark"] .research-page,
+html[data-theme="dark"] .rare-cases-section,
+html[data-theme="dark"] .treatment-info {
+  background: transparent;
+  color: var(--th-text);
+}
+
+/* ---- White card surfaces → dark gradient ---- */
+html[data-theme="dark"] .cancer-overview-content,
+html[data-theme="dark"] .cancer-type-card,
+html[data-theme="dark"] .cancer-warning-box,
+html[data-theme="dark"] .cancer-prevention-card,
+html[data-theme="dark"] .cancer-diagnosis-card,
+html[data-theme="dark"] .cancer-treatment-card,
+html[data-theme="dark"] .cancer-care-box,
+html[data-theme="dark"] .emergency-overview-card,
+html[data-theme="dark"] .emergency-service,
+html[data-theme="dark"] .emergency-warning-card,
+html[data-theme="dark"] .emergency-process-box,
+html[data-theme="dark"] .emergency-department,
+html[data-theme="dark"] .emergency-firstaid-card,
+html[data-theme="dark"] .gastro-intro-content,
+html[data-theme="dark"] .gastro-condition,
+html[data-theme="dark"] .gastro-service,
+html[data-theme="dark"] .gastro-symptoms-box,
+html[data-theme="dark"] .gastro-diagnostic,
+html[data-theme="dark"] .gastro-care-box,
+html[data-theme="dark"] .gastro-prevention-card,
+html[data-theme="dark"] .heart-overview-content,
+html[data-theme="dark"] .heart-anatomy-box,
+html[data-theme="dark"] .heart-condition,
+html[data-theme="dark"] .heart-symptoms-box,
+html[data-theme="dark"] .heart-diagnosis-card,
+html[data-theme="dark"] .heart-treatment-card,
+html[data-theme="dark"] .heart-prevention-box,
+html[data-theme="dark"] .heart-care-box,
+html[data-theme="dark"] .heart-large-icon,
+html[data-theme="dark"] .hospital-treatment-count,
+html[data-theme="dark"] .hospital-treatment-card,
+html[data-theme="dark"] .hospital-empty,
+html[data-theme="dark"] .hospital-mobile-menu,
+html[data-theme="dark"] .kidney-intro-content,
+html[data-theme="dark"] .kidney-condition,
+html[data-theme="dark"] .kidney-symptoms-box,
+html[data-theme="dark"] .kidney-service,
+html[data-theme="dark"] .kidney-diagnosis-card,
+html[data-theme="dark"] .kidney-treatment-card,
+html[data-theme="dark"] .kidney-health-box,
+html[data-theme="dark"] .klt-intro-main,
+html[data-theme="dark"] .klt-organ-card,
+html[data-theme="dark"] .klt-service,
+html[data-theme="dark"] .klt-donation-card,
+html[data-theme="dark"] .klt-process-card,
+html[data-theme="dark"] .klt-info-box,
+html[data-theme="dark"] .klt-faq-item,
+html[data-theme="dark"] .maternity-intro-content,
+html[data-theme="dark"] .maternity-service,
+html[data-theme="dark"] .maternity-stages,
+html[data-theme="dark"] .maternity-delivery-card,
+html[data-theme="dark"] .maternity-antenatal-item,
+html[data-theme="dark"] .maternity-postnatal-card,
+html[data-theme="dark"] .orthopedic-intro-content,
+html[data-theme="dark"] .orthopedic-condition,
+html[data-theme="dark"] .orthopedic-service,
+html[data-theme="dark"] .orthopedic-treatment-box,
+html[data-theme="dark"] .neurology-intro-content,
+html[data-theme="dark"] .neurology-service,
+html[data-theme="dark"] .neurology-care-box,
+html[data-theme="dark"] .health-package-card,
+html[data-theme="dark"] .health-benefit,
+html[data-theme="dark"] .health-no-results,
+html[data-theme="dark"] .donation-intro-card,
+html[data-theme="dark"] .donation-type-card,
+html[data-theme="dark"] .organ-card,
+html[data-theme="dark"] .donation-process,
+html[data-theme="dark"] .eligibility-card,
+html[data-theme="dark"] .benefit-card,
+html[data-theme="dark"] .faq-item,
+html[data-theme="dark"] .health-home-intro-content,
+html[data-theme="dark"] .health-home-benefit,
+html[data-theme="dark"] .health-home-service,
+html[data-theme="dark"] .health-home-who-card,
+html[data-theme="dark"] .health-home-care-box,
+html[data-theme="dark"] .ambulance-intro-card,
+html[data-theme="dark"] .ambulance-service-card,
+html[data-theme="dark"] .ambulance-type-card,
+html[data-theme="dark"] .ambulance-process,
+html[data-theme="dark"] .ambulance-warning-list,
+html[data-theme="dark"] .ambulance-safety-card,
+html[data-theme="dark"] .ambulance-disclaimer,
+html[data-theme="dark"] .press-section,
+html[data-theme="dark"] .why-invest,
+html[data-theme="dark"] .paper,
+html[data-theme="dark"] .rare-case-card,
+html[data-theme="dark"] .ti-panel,
+html[data-theme="dark"] .ti-card {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid var(--th-line);
+  box-shadow: var(--th-card-shadow);
+}
+
+html[data-theme="dark"] .cancer-type-card:hover,
+html[data-theme="dark"] .emergency-service:hover,
+html[data-theme="dark"] .gastro-condition:hover,
+html[data-theme="dark"] .gastro-service:hover,
+html[data-theme="dark"] .heart-condition:hover,
+html[data-theme="dark"] .hospital-treatment-card:hover,
+html[data-theme="dark"] .kidney-condition:hover,
+html[data-theme="dark"] .kidney-service:hover,
+html[data-theme="dark"] .kidney-treatment-card:hover,
+html[data-theme="dark"] .klt-organ-card:hover,
+html[data-theme="dark"] .klt-service:hover,
+html[data-theme="dark"] .maternity-service:hover,
+html[data-theme="dark"] .orthopedic-condition:hover,
+html[data-theme="dark"] .orthopedic-service:hover,
+html[data-theme="dark"] .neurology-service:hover,
+html[data-theme="dark"] .health-package-card:hover,
+html[data-theme="dark"] .donation-type-card:hover,
+html[data-theme="dark"] .organ-card:hover,
+html[data-theme="dark"] .health-home-service:hover,
+html[data-theme="dark"] .ambulance-service-card:hover,
+html[data-theme="dark"] .ambulance-type-card:hover,
+html[data-theme="dark"] .paper:hover,
+html[data-theme="dark"] .rare-case-card:hover,
+html[data-theme="dark"] .ti-card:hover {
+  border-color: rgba(34, 195, 201, 0.45);
+  box-shadow: var(--th-card-shadow-hover);
+}
+
+/* Subtle inset rows / list pills (were #f7fafc / #f0f7f8 / #f8fafc) */
+html[data-theme="dark"] .cancer-warning-item,
+html[data-theme="dark"] .cancer-type-symptoms li,
+html[data-theme="dark"] .gastro-symptom,
+html[data-theme="dark"] .kidney-symptom,
+html[data-theme="dark"] .heart-anatomy-list li,
+html[data-theme="dark"] .heart-symptom,
+html[data-theme="dark"] .klt-service li,
+html[data-theme="dark"] .doctor-header,
+html[data-theme="dark"] .health-package-top {
+  background: rgba(125, 190, 220, 0.07);
+  border-color: var(--th-line-soft);
+  color: var(--th-text);
+}
+
+/* ---- Headings → light ---- */
+html[data-theme="dark"] .cancer-section-heading h2,
+html[data-theme="dark"] .cancer-overview-content h2,
+html[data-theme="dark"] .cancer-overview-side h3,
+html[data-theme="dark"] .cancer-type-card h3,
+html[data-theme="dark"] .cancer-highlight strong,
+html[data-theme="dark"] .cancer-prevention-card h3,
+html[data-theme="dark"] .cancer-diagnosis-card h3,
+html[data-theme="dark"] .cancer-treatment-card h3,
+html[data-theme="dark"] .cancer-care-step h3,
+html[data-theme="dark"] .cancer-symptom-heading,
+html[data-theme="dark"] .emergency-section-heading h2,
+html[data-theme="dark"] .emergency-overview-card h2,
+html[data-theme="dark"] .emergency-overview-side h3,
+html[data-theme="dark"] .emergency-service h3,
+html[data-theme="dark"] .emergency-highlight strong,
+html[data-theme="dark"] .emergency-warning-card h3,
+html[data-theme="dark"] .emergency-process-step h3,
+html[data-theme="dark"] .emergency-department h3,
+html[data-theme="dark"] .emergency-firstaid-card h3,
+html[data-theme="dark"] .emergency-feature-title,
+html[data-theme="dark"] .gastro-section-heading h2,
+html[data-theme="dark"] .gastro-intro-content h2,
+html[data-theme="dark"] .gastro-intro-side h3,
+html[data-theme="dark"] .gastro-prevention-card h2,
+html[data-theme="dark"] .gastro-condition h3,
+html[data-theme="dark"] .gastro-service h3,
+html[data-theme="dark"] .gastro-highlight strong,
+html[data-theme="dark"] .gastro-diagnostic h3,
+html[data-theme="dark"] .gastro-care-step h3,
+html[data-theme="dark"] .gastro-feature-title,
+html[data-theme="dark"] .heart-section-heading h2,
+html[data-theme="dark"] .heart-overview-content h2,
+html[data-theme="dark"] .heart-overview-side h3,
+html[data-theme="dark"] .heart-anatomy-content h3,
+html[data-theme="dark"] .heart-diagnosis-card h3,
+html[data-theme="dark"] .heart-treatment-card h3,
+html[data-theme="dark"] .heart-condition h3,
+html[data-theme="dark"] .heart-highlight strong,
+html[data-theme="dark"] .heart-prevention-item h3,
+html[data-theme="dark"] .heart-care-step h3,
+html[data-theme="dark"] .heart-feature-title,
+html[data-theme="dark"] .hospital-logo-text,
+html[data-theme="dark"] .hospital-page-title,
+html[data-theme="dark"] .hospital-menu-button,
+html[data-theme="dark"] .hospital-treatment-name,
+html[data-theme="dark"] .hospital-empty-title,
+html[data-theme="dark"] .kidney-section-heading h2,
+html[data-theme="dark"] .kidney-intro-content h2,
+html[data-theme="dark"] .kidney-intro-side h3,
+html[data-theme="dark"] .kidney-condition h3,
+html[data-theme="dark"] .kidney-service h3,
+html[data-theme="dark"] .kidney-highlight strong,
+html[data-theme="dark"] .kidney-diagnosis-card h3,
+html[data-theme="dark"] .kidney-treatment-card h3,
+html[data-theme="dark"] .kidney-health-item h3,
+html[data-theme="dark"] .kidney-feature-title,
+html[data-theme="dark"] .klt-heading h2,
+html[data-theme="dark"] .klt-intro-main h2,
+html[data-theme="dark"] .klt-intro-side h3,
+html[data-theme="dark"] .klt-organ-card h3,
+html[data-theme="dark"] .klt-service h3,
+html[data-theme="dark"] .klt-donation-card h3,
+html[data-theme="dark"] .klt-process-card h3,
+html[data-theme="dark"] .klt-faq-item h3,
+html[data-theme="dark"] .klt-info-box h3,
+html[data-theme="dark"] .klt-cta h2,
+html[data-theme="dark"] .maternity-section-heading h2,
+html[data-theme="dark"] .maternity-intro-content h2,
+html[data-theme="dark"] .maternity-intro-side h3,
+html[data-theme="dark"] .maternity-service h3,
+html[data-theme="dark"] .maternity-highlight strong,
+html[data-theme="dark"] .maternity-stage h3,
+html[data-theme="dark"] .maternity-delivery-card h3,
+html[data-theme="dark"] .maternity-postnatal-card h3,
+html[data-theme="dark"] .maternity-feature-title,
+html[data-theme="dark"] .orthopedic-section-heading h2,
+html[data-theme="dark"] .orthopedic-intro-content h2,
+html[data-theme="dark"] .orthopedic-intro-side h3,
+html[data-theme="dark"] .orthopedic-service h3,
+html[data-theme="dark"] .orthopedic-highlight strong,
+html[data-theme="dark"] .orthopedic-condition h3,
+html[data-theme="dark"] .orthopedic-treatment-step h3,
+html[data-theme="dark"] .orthopedic-feature-title,
+html[data-theme="dark"] .neurology-section-heading h2,
+html[data-theme="dark"] .neurology-intro-content h2,
+html[data-theme="dark"] .neurology-intro-side h3,
+html[data-theme="dark"] .neurology-service h3,
+html[data-theme="dark"] .neurology-highlight strong,
+html[data-theme="dark"] .neurology-care-step h3,
+html[data-theme="dark"] .neurology-feature-title,
+html[data-theme="dark"] .health-section-heading h2,
+html[data-theme="dark"] .health-package-top h3,
+html[data-theme="dark"] .health-result-info strong,
+html[data-theme="dark"] .health-modal-header h2,
+html[data-theme="dark"] .health-tests-title,
+html[data-theme="dark"] .health-benefit h3,
+html[data-theme="dark"] .health-no-results h3,
+html[data-theme="dark"] .health-modal-body h3,
+html[data-theme="dark"] .health-info-box h2,
+html[data-theme="dark"] .health-filter-title,
+html[data-theme="dark"] .health-meta-item strong,
+html[data-theme="dark"] .donation-section-heading h2,
+html[data-theme="dark"] .donation-intro-card h2,
+html[data-theme="dark"] .donation-impact-card h3,
+html[data-theme="dark"] .donation-type-card h3,
+html[data-theme="dark"] .impact-item strong,
+html[data-theme="dark"] .benefit-card h3,
+html[data-theme="dark"] .faq-item h3,
+html[data-theme="dark"] .organ-card h3,
+html[data-theme="dark"] .process-step h3,
+html[data-theme="dark"] .eligibility-card h3,
+html[data-theme="dark"] .health-home-section-heading h2,
+html[data-theme="dark"] .health-home-intro-content h2,
+html[data-theme="dark"] .health-home-intro-side h3,
+html[data-theme="dark"] .health-home-service h3,
+html[data-theme="dark"] .health-home-highlight strong,
+html[data-theme="dark"] .health-home-benefit h3,
+html[data-theme="dark"] .health-home-who-card h3,
+html[data-theme="dark"] .health-home-care-step h3,
+html[data-theme="dark"] .health-home-feature-title,
+html[data-theme="dark"] .ambulance-section-heading h2,
+html[data-theme="dark"] .ambulance-intro-card h2,
+html[data-theme="dark"] .ambulance-intro-side h3,
+html[data-theme="dark"] .ambulance-warning-list h3,
+html[data-theme="dark"] .ambulance-service-card h3,
+html[data-theme="dark"] .ambulance-type-card h3,
+html[data-theme="dark"] .ambulance-highlight strong,
+html[data-theme="dark"] .ambulance-process-step h3,
+html[data-theme="dark"] .ambulance-safety-card h3,
+html[data-theme="dark"] .ambulance-disclaimer strong,
+html[data-theme="dark"] .media-page .section-heading h2,
+html[data-theme="dark"] .results-header h3,
+html[data-theme="dark"] .media-title h3,
+html[data-theme="dark"] .media-page .no-results h3,
+html[data-theme="dark"] .press-section h2,
+html[data-theme="dark"] .investors-page .section-heading h2,
+html[data-theme="dark"] .investor-name h3,
+html[data-theme="dark"] .why-item h3,
+html[data-theme="dark"] .resource-card h3,
+html[data-theme="dark"] .detail-box strong,
+html[data-theme="dark"] .rare-cases-header h1,
+html[data-theme="dark"] .rare-case-card h2,
+html[data-theme="dark"] .rare-cases-section .no-results h3,
+html[data-theme="dark"] .page-intro h2,
+html[data-theme="dark"] .doctor-info h3,
+html[data-theme="dark"] .papers-title h4,
+html[data-theme="dark"] .paper h5,
+html[data-theme="dark"] .ti-panel h2,
+html[data-theme="dark"] .ti-section h2,
+html[data-theme="dark"] .ti-card h3,
+html[data-theme="dark"] .ti-highlight strong {
+  color: var(--th-heading);
+}
+
+/* ---- Body / muted text ---- */
+html[data-theme="dark"] .cancer-section-heading p,
+html[data-theme="dark"] .cancer-overview-content p,
+html[data-theme="dark"] .cancer-type-card > p,
+html[data-theme="dark"] .cancer-highlight span,
+html[data-theme="dark"] .cancer-prevention-card p,
+html[data-theme="dark"] .cancer-diagnosis-card p,
+html[data-theme="dark"] .cancer-care-step p,
+html[data-theme="dark"] .cancer-treatment-card p,
+html[data-theme="dark"] .cancer-type-symptoms li,
+html[data-theme="dark"] .cancer-warning-item,
+html[data-theme="dark"] .cancer-warning-note,
+html[data-theme="dark"] .emergency-section-heading p,
+html[data-theme="dark"] .emergency-overview-card p,
+html[data-theme="dark"] .emergency-service p,
+html[data-theme="dark"] .emergency-firstaid-list li,
+html[data-theme="dark"] .emergency-highlight span,
+html[data-theme="dark"] .emergency-process-step p,
+html[data-theme="dark"] .emergency-department p,
+html[data-theme="dark"] .emergency-warning-card p,
+html[data-theme="dark"] .emergency-feature-list li,
+html[data-theme="dark"] .gastro-section-heading p,
+html[data-theme="dark"] .gastro-intro-content p,
+html[data-theme="dark"] .gastro-service p,
+html[data-theme="dark"] .gastro-prevention-card p,
+html[data-theme="dark"] .gastro-condition p,
+html[data-theme="dark"] .gastro-highlight span,
+html[data-theme="dark"] .gastro-diagnostic p,
+html[data-theme="dark"] .gastro-care-step p,
+html[data-theme="dark"] .gastro-feature-list li,
+html[data-theme="dark"] .gastro-prevention-list li,
+html[data-theme="dark"] .gastro-symptom,
+html[data-theme="dark"] .heart-section-heading p,
+html[data-theme="dark"] .heart-overview-content p,
+html[data-theme="dark"] .heart-anatomy-content p,
+html[data-theme="dark"] .heart-condition p,
+html[data-theme="dark"] .heart-highlight span,
+html[data-theme="dark"] .heart-prevention-item p,
+html[data-theme="dark"] .heart-care-step p,
+html[data-theme="dark"] .heart-diagnosis-card p,
+html[data-theme="dark"] .heart-treatment-card p,
+html[data-theme="dark"] .heart-feature-list li,
+html[data-theme="dark"] .heart-anatomy-list li,
+html[data-theme="dark"] .heart-symptom,
+html[data-theme="dark"] .hospital-logo-subtext,
+html[data-theme="dark"] .hospital-page-subtitle,
+html[data-theme="dark"] .hospital-count-text,
+html[data-theme="dark"] .hospital-nav-link,
+html[data-theme="dark"] .hospital-treatment-label,
+html[data-theme="dark"] .hospital-treatment-description,
+html[data-theme="dark"] .hospital-service,
+html[data-theme="dark"] .hospital-empty-text,
+html[data-theme="dark"] .hospital-mobile-nav-link,
+html[data-theme="dark"] .hospital-mobile-login-button,
+html[data-theme="dark"] .hospital-login-button,
+html[data-theme="dark"] .hospital-clear-button,
+html[data-theme="dark"] .kidney-section-heading p,
+html[data-theme="dark"] .kidney-intro-content p,
+html[data-theme="dark"] .kidney-condition p,
+html[data-theme="dark"] .kidney-service p,
+html[data-theme="dark"] .kidney-highlight span,
+html[data-theme="dark"] .kidney-health-item p,
+html[data-theme="dark"] .kidney-diagnosis-card p,
+html[data-theme="dark"] .kidney-treatment-card p,
+html[data-theme="dark"] .kidney-feature-list li,
+html[data-theme="dark"] .kidney-symptom,
+html[data-theme="dark"] .klt-heading p,
+html[data-theme="dark"] .klt-faq-item p,
+html[data-theme="dark"] .klt-intro-main p,
+html[data-theme="dark"] .klt-organ-card > p,
+html[data-theme="dark"] .klt-highlight span,
+html[data-theme="dark"] .klt-organ-label,
+html[data-theme="dark"] .klt-organ-card li,
+html[data-theme="dark"] .klt-service p,
+html[data-theme="dark"] .klt-service li,
+html[data-theme="dark"] .klt-donation-card p,
+html[data-theme="dark"] .klt-process-card p,
+html[data-theme="dark"] .klt-info-box li,
+html[data-theme="dark"] .klt-cta p,
+html[data-theme="dark"] .maternity-section-heading p,
+html[data-theme="dark"] .maternity-intro-content p,
+html[data-theme="dark"] .maternity-service p,
+html[data-theme="dark"] .maternity-highlight span,
+html[data-theme="dark"] .maternity-stage p,
+html[data-theme="dark"] .maternity-delivery-card p,
+html[data-theme="dark"] .maternity-postnatal-card p,
+html[data-theme="dark"] .maternity-feature-list li,
+html[data-theme="dark"] .maternity-antenatal-item,
+html[data-theme="dark"] .orthopedic-section-heading p,
+html[data-theme="dark"] .orthopedic-intro-content p,
+html[data-theme="dark"] .orthopedic-service p,
+html[data-theme="dark"] .orthopedic-highlight span,
+html[data-theme="dark"] .orthopedic-condition p,
+html[data-theme="dark"] .orthopedic-treatment-step p,
+html[data-theme="dark"] .orthopedic-feature-list li,
+html[data-theme="dark"] .neurology-section-heading p,
+html[data-theme="dark"] .neurology-intro-content p,
+html[data-theme="dark"] .neurology-service p,
+html[data-theme="dark"] .neurology-highlight span,
+html[data-theme="dark"] .neurology-care-step p,
+html[data-theme="dark"] .neurology-feature-list li,
+html[data-theme="dark"] .health-section-heading p,
+html[data-theme="dark"] .health-result-info,
+html[data-theme="dark"] .health-package-description,
+html[data-theme="dark"] .health-meta-item,
+html[data-theme="dark"] .health-test-list li,
+html[data-theme="dark"] .health-benefit p,
+html[data-theme="dark"] .health-no-results p,
+html[data-theme="dark"] .health-info-box p,
+html[data-theme="dark"] .health-info-box ul,
+html[data-theme="dark"] .health-modal-header p,
+html[data-theme="dark"] .health-modal-tests li,
+html[data-theme="dark"] .health-old-price,
+html[data-theme="dark"] .donation-section-heading p,
+html[data-theme="dark"] .donation-intro-card p,
+html[data-theme="dark"] .donation-type-card p,
+html[data-theme="dark"] .impact-item span,
+html[data-theme="dark"] .benefit-card p,
+html[data-theme="dark"] .process-step p,
+html[data-theme="dark"] .organ-card p,
+html[data-theme="dark"] .faq-item p,
+html[data-theme="dark"] .eligibility-card > p,
+html[data-theme="dark"] .donation-points li,
+html[data-theme="dark"] .eligibility-list li,
+html[data-theme="dark"] .health-home-section-heading p,
+html[data-theme="dark"] .health-home-who-card p,
+html[data-theme="dark"] .health-home-intro-content p,
+html[data-theme="dark"] .health-home-service p,
+html[data-theme="dark"] .health-home-highlight span,
+html[data-theme="dark"] .health-home-benefit p,
+html[data-theme="dark"] .health-home-care-step p,
+html[data-theme="dark"] .health-home-feature-list li,
+html[data-theme="dark"] .ambulance-section-heading p,
+html[data-theme="dark"] .ambulance-intro-card p,
+html[data-theme="dark"] .ambulance-service-card p,
+html[data-theme="dark"] .ambulance-type-card > p,
+html[data-theme="dark"] .ambulance-highlight span,
+html[data-theme="dark"] .ambulance-process-step p,
+html[data-theme="dark"] .ambulance-disclaimer p,
+html[data-theme="dark"] .ambulance-safety-card p,
+html[data-theme="dark"] .ambulance-type-features li,
+html[data-theme="dark"] .ambulance-warning-items li,
+html[data-theme="dark"] .media-page .section-heading p,
+html[data-theme="dark"] .results-count,
+html[data-theme="dark"] .media-description,
+html[data-theme="dark"] .media-source,
+html[data-theme="dark"] .media-page .no-results,
+html[data-theme="dark"] .press-section p,
+html[data-theme="dark"] .investors-page .section-heading p,
+html[data-theme="dark"] .financial-card span,
+html[data-theme="dark"] .investor-description,
+html[data-theme="dark"] .why-item p,
+html[data-theme="dark"] .resource-card p,
+html[data-theme="dark"] .investor-footer,
+html[data-theme="dark"] .detail-box small,
+html[data-theme="dark"] .rare-cases-header p,
+html[data-theme="dark"] .results-info,
+html[data-theme="dark"] .case-date,
+html[data-theme="dark"] .case-content > p,
+html[data-theme="dark"] .full-description p,
+html[data-theme="dark"] .rare-cases-section .no-results p,
+html[data-theme="dark"] .page-intro p,
+html[data-theme="dark"] .stat-card span,
+html[data-theme="dark"] .doctor-info p,
+html[data-theme="dark"] .doctor-contact p,
+html[data-theme="dark"] .paper-journal,
+html[data-theme="dark"] .ti-panel p,
+html[data-theme="dark"] .ti-section-intro,
+html[data-theme="dark"] .ti-card p,
+html[data-theme="dark"] .ti-highlight span,
+html[data-theme="dark"] .ti-list li {
+  color: var(--th-muted);
+}
+
+/* ---- Teal accent chips (icons / checks / step numbers) ---- */
+html[data-theme="dark"] .cancer-type-icon,
+html[data-theme="dark"] .cancer-prevention-icon,
+html[data-theme="dark"] .cancer-treatment-icon,
+html[data-theme="dark"] .cancer-highlight-icon,
+html[data-theme="dark"] .cancer-warning-check,
+html[data-theme="dark"] .cancer-step-number,
+html[data-theme="dark"] .gastro-condition-icon,
+html[data-theme="dark"] .gastro-service-icon,
+html[data-theme="dark"] .gastro-highlight-icon,
+html[data-theme="dark"] .gastro-check,
+html[data-theme="dark"] .gastro-symptom-check,
+html[data-theme="dark"] .gastro-diagnostic-number,
+html[data-theme="dark"] .gastro-step-number,
+html[data-theme="dark"] .kidney-condition-icon,
+html[data-theme="dark"] .kidney-service-icon,
+html[data-theme="dark"] .kidney-treatment-icon,
+html[data-theme="dark"] .kidney-highlight-icon,
+html[data-theme="dark"] .kidney-check,
+html[data-theme="dark"] .kidney-symptom-check,
+html[data-theme="dark"] .kidney-health-number,
+html[data-theme="dark"] .orthopedic-condition-icon,
+html[data-theme="dark"] .orthopedic-service-icon,
+html[data-theme="dark"] .orthopedic-highlight-icon,
+html[data-theme="dark"] .orthopedic-check,
+html[data-theme="dark"] .orthopedic-step-number,
+html[data-theme="dark"] .neurology-service-icon,
+html[data-theme="dark"] .neurology-highlight-icon,
+html[data-theme="dark"] .neurology-check,
+html[data-theme="dark"] .neurology-step-number,
+html[data-theme="dark"] .health-home-benefit-icon,
+html[data-theme="dark"] .health-home-service-icon,
+html[data-theme="dark"] .health-home-highlight-icon,
+html[data-theme="dark"] .health-home-who-card-icon,
+html[data-theme="dark"] .health-home-check,
+html[data-theme="dark"] .health-home-step-number,
+html[data-theme="dark"] .donation-type-icon,
+html[data-theme="dark"] .benefit-icon,
+html[data-theme="dark"] .impact-icon,
+html[data-theme="dark"] .organ-icon,
+html[data-theme="dark"] .donation-check,
+html[data-theme="dark"] .process-number,
+html[data-theme="dark"] .klt-highlight-icon,
+html[data-theme="dark"] .klt-organ-icon,
+html[data-theme="dark"] .klt-service-icon,
+html[data-theme="dark"] .klt-donation-icon,
+html[data-theme="dark"] .klt-check,
+html[data-theme="dark"] .klt-process-number,
+html[data-theme="dark"] .hospital-treatment-icon-container,
+html[data-theme="dark"] .hospital-service-check,
+html[data-theme="dark"] .hospital-empty-icon,
+html[data-theme="dark"] .case-icon,
+html[data-theme="dark"] .no-results-icon,
+html[data-theme="dark"] .ti-highlight-mark {
+  background: rgba(34, 195, 201, 0.15);
+  color: var(--th-teal-bright);
+}
+
+/* Teal text accents (numbers / labels / links) */
+html[data-theme="dark"] .cancer-type-number,
+html[data-theme="dark"] .cancer-diagnosis-number,
+html[data-theme="dark"] .hospital-count-number,
+html[data-theme="dark"] .hospital-search-icon,
+html[data-theme="dark"] .ti-eyebrow,
+html[data-theme="dark"] .ti-number,
+html[data-theme="dark"] .ti-back,
+html[data-theme="dark"] .rare-cases-header h1 span,
+html[data-theme="dark"] .section-label,
+html[data-theme="dark"] .hospital-name,
+html[data-theme="dark"] .hospital-icon,
+html[data-theme="dark"] .read-more-btn,
+html[data-theme="dark"] .view-all-btn,
+html[data-theme="dark"] .search-icon,
+html[data-theme="dark"] .organ-label,
+html[data-theme="dark"] .klt-check {
+  color: var(--th-teal);
+}
+
+html[data-theme="dark"] .case-category,
+html[data-theme="dark"] .hospital-mobile-active-link {
+  background: rgba(34, 195, 201, 0.15);
+  color: var(--th-teal-bright);
+}
+
+/* ---- Red / emergency accent chips ---- */
+html[data-theme="dark"] .emergency-service-icon,
+html[data-theme="dark"] .emergency-warning-icon,
+html[data-theme="dark"] .emergency-department-icon,
+html[data-theme="dark"] .emergency-check,
+html[data-theme="dark"] .emergency-step-number,
+html[data-theme="dark"] .emergency-highlight-icon,
+html[data-theme="dark"] .heart-condition-icon,
+html[data-theme="dark"] .heart-treatment-icon,
+html[data-theme="dark"] .heart-prevention-icon,
+html[data-theme="dark"] .heart-highlight-icon,
+html[data-theme="dark"] .heart-check,
+html[data-theme="dark"] .heart-symptom-icon,
+html[data-theme="dark"] .heart-step-number,
+html[data-theme="dark"] .ambulance-service-icon,
+html[data-theme="dark"] .ambulance-type-icon,
+html[data-theme="dark"] .ambulance-check,
+html[data-theme="dark"] .ambulance-step-number,
+html[data-theme="dark"] .ambulance-highlight-icon {
+  background: rgba(220, 60, 60, 0.18);
+  color: #ff9b9b;
+}
+
+html[data-theme="dark"] .heart-diagnosis-card span,
+html[data-theme="dark"] .heart-anatomy-list strong {
+  color: #ff9b9b;
+}
+
+/* ---- Pink / maternity accent chips ---- */
+html[data-theme="dark"] .maternity-highlight-icon,
+html[data-theme="dark"] .maternity-service-icon,
+html[data-theme="dark"] .maternity-delivery-card-icon,
+html[data-theme="dark"] .maternity-check,
+html[data-theme="dark"] .maternity-stage-number,
+html[data-theme="dark"] .maternity-antenatal-item span {
+  background: rgba(177, 62, 105, 0.24);
+  color: #ff9dc0;
+}
+
+html[data-theme="dark"] .maternity-section-heading span {
+  color: #ff9dc0;
+}
+
+/* ---- Blue / green accent chips (checkup, media, investors, research) ---- */
+html[data-theme="dark"] .health-package-category,
+html[data-theme="dark"] .health-benefit-icon,
+html[data-theme="dark"] .health-modal-price,
+html[data-theme="dark"] .why-icon,
+html[data-theme="dark"] .paper-count,
+html[data-theme="dark"] .meta-badge,
+html[data-theme="dark"] .badge-type,
+html[data-theme="dark"] .badge-year {
+  background: rgba(76, 195, 255, 0.14);
+  color: var(--th-blue);
+}
+
+html[data-theme="dark"] .health-popular,
+html[data-theme="dark"] .health-test-check,
+html[data-theme="dark"] .hospital-available-badge,
+html[data-theme="dark"] .badge-status {
+  background: rgba(47, 211, 154, 0.14);
+  color: var(--th-green);
+}
+
+html[data-theme="dark"] .health-save {
+  background: rgba(47, 211, 154, 0.14);
+  color: var(--th-green);
+}
+
+html[data-theme="dark"] .health-price,
+html[data-theme="dark"] .health-more-tests,
+html[data-theme="dark"] .health-reset-button,
+html[data-theme="dark"] .health-modal-book,
+html[data-theme="dark"] .financial-card strong,
+html[data-theme="dark"] .investor-type,
+html[data-theme="dark"] .resource-link,
+html[data-theme="dark"] .stat-card strong,
+html[data-theme="dark"] .doctor-info .specialty,
+html[data-theme="dark"] .view-all-button {
+  color: var(--th-blue);
+}
+
+/* ---- Light intro-side gradients → dark tinted surfaces ---- */
+html[data-theme="dark"] .cancer-overview-side,
+html[data-theme="dark"] .gastro-intro-side,
+html[data-theme="dark"] .kidney-intro-side,
+html[data-theme="dark"] .klt-intro-side,
+html[data-theme="dark"] .orthopedic-intro-side,
+html[data-theme="dark"] .neurology-intro-side,
+html[data-theme="dark"] .health-home-intro-side,
+html[data-theme="dark"] .donation-impact-card {
+  background:
+    radial-gradient(420px 220px at 50% -10%, rgba(34, 195, 201, 0.12), transparent 62%),
+    linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid var(--th-line);
+}
+
+html[data-theme="dark"] .emergency-overview-side,
+html[data-theme="dark"] .heart-overview-side,
+html[data-theme="dark"] .ambulance-intro-side {
+  background:
+    radial-gradient(420px 220px at 50% -10%, rgba(220, 60, 60, 0.12), transparent 62%),
+    linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid var(--th-line);
+}
+
+html[data-theme="dark"] .maternity-intro-side {
+  background:
+    radial-gradient(420px 220px at 50% -10%, rgba(177, 62, 105, 0.16), transparent 62%),
+    linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid var(--th-line);
+}
+
+html[data-theme="dark"] .heart-anatomy-visual {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(220, 60, 60, 0.16), rgba(20, 48, 63, 0.4) 70%);
+}
+
+/* ---- Light semantic sections → dark tinted ---- */
+/* Emergency / warning boxes (were #fff5f5) */
+html[data-theme="dark"] .cancer-emergency,
+html[data-theme="dark"] .gastro-emergency,
+html[data-theme="dark"] .kidney-emergency,
+html[data-theme="dark"] .orthopedic-emergency,
+html[data-theme="dark"] .neurology-emergency,
+html[data-theme="dark"] .health-home-emergency,
+html[data-theme="dark"] .maternity-emergency,
+html[data-theme="dark"] .emergency-notice,
+html[data-theme="dark"] .maternity-warning-box,
+html[data-theme="dark"] .ambulance-call-banner,
+html[data-theme="dark"] .ti-emergency {
+  background: rgba(220, 60, 60, 0.1);
+  border: 1px solid rgba(255, 120, 120, 0.28);
+}
+
+html[data-theme="dark"] .emergency-notice h3,
+html[data-theme="dark"] .maternity-warning-box h3,
+html[data-theme="dark"] .ambulance-call-left h3,
+html[data-theme="dark"] .ti-emergency h3 {
+  color: #ff9b9b;
+}
+
+html[data-theme="dark"] .emergency-notice p,
+html[data-theme="dark"] .maternity-warning-box > p,
+html[data-theme="dark"] .maternity-warning-list li,
+html[data-theme="dark"] .ambulance-call-left p,
+html[data-theme="dark"] .ti-emergency p {
+  color: #d9a3a3;
+}
+
+html[data-theme="dark"] .maternity-warning-list li span {
+  background: rgba(220, 60, 60, 0.2);
+  color: #ff9b9b;
+}
+
+/* Amber notices / disclaimers */
+html[data-theme="dark"] .emergency-final-warning,
+html[data-theme="dark"] .donation-disclaimer {
+  background: rgba(255, 138, 61, 0.1);
+  border: 1px solid rgba(255, 138, 61, 0.3);
+  color: #ffc79a;
+}
+
+/* Blue info / note boxes */
+html[data-theme="dark"] .health-info-box,
+html[data-theme="dark"] .ti-note {
+  background: rgba(76, 195, 255, 0.09);
+  border: 1px solid rgba(76, 195, 255, 0.24);
+}
+
+html[data-theme="dark"] .ti-note h3 {
+  color: var(--th-blue);
+}
+
+html[data-theme="dark"] .ti-note p {
+  color: var(--th-muted);
+}
+
+/* KLT light CTA + benefit/risk boxes */
+html[data-theme="dark"] .klt-cta {
+  background: rgba(34, 195, 201, 0.09);
+  border: 1px solid rgba(34, 195, 201, 0.24);
+}
+
+html[data-theme="dark"] .klt-info-box.benefits {
+  background:
+    radial-gradient(400px 200px at 50% -10%, rgba(47, 211, 154, 0.1), transparent 60%),
+    linear-gradient(180deg, #14303f 0%, #10222f 100%);
+}
+
+html[data-theme="dark"] .klt-info-box.risks {
+  background:
+    radial-gradient(400px 200px at 50% -10%, rgba(220, 60, 60, 0.1), transparent 60%),
+    linear-gradient(180deg, #14303f 0%, #10222f 100%);
+}
+
+html[data-theme="dark"] .klt-info-box.benefits li span {
+  color: var(--th-green);
+}
+
+html[data-theme="dark"] .klt-info-box.risks li span {
+  color: #ff9b9b;
+}
+
+html[data-theme="dark"] .klt-cta-btn.secondary {
+  background: #14303f;
+  border-color: rgba(125, 190, 220, 0.28);
+  color: var(--th-text);
+}
+
+/* Maternity postnatal tint */
+html[data-theme="dark"] .maternity-postnatal {
+  background: rgba(177, 62, 105, 0.08);
+  border-color: rgba(177, 62, 105, 0.22);
+}
+
+/* ---- Dividers / lines ---- */
+html[data-theme="dark"] .hospital-treatment-line,
+html[data-theme="dark"] .hospital-mobile-divider,
+html[data-theme="dark"] .investor-footer,
+html[data-theme="dark"] .media-footer,
+html[data-theme="dark"] .health-package-meta,
+html[data-theme="dark"] .ti-highlight {
+  border-color: var(--th-line-soft);
+}
+
+html[data-theme="dark"] .hospital-treatment-line,
+html[data-theme="dark"] .hospital-mobile-divider {
+  background: var(--th-line-soft);
+}
+
+/* ---- Search bars + filter controls ---- */
+html[data-theme="dark"] .hospital-search-container,
+html[data-theme="dark"] .health-search-box {
+  background: linear-gradient(180deg, #0e2130 0%, #0b1a27 100%);
+  border: 1px solid rgba(125, 190, 220, 0.22);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .hospital-search-input,
+html[data-theme="dark"] .health-search-input {
+  background: transparent;
+  border-color: transparent;
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .hospital-search-input::placeholder,
+html[data-theme="dark"] .health-search-input::placeholder {
+  color: #5e7a8c;
+}
+
+html[data-theme="dark"] .hospital-search-container:focus-within,
+html[data-theme="dark"] .health-search-box:focus-within,
+html[data-theme="dark"] .health-search-input:focus {
+  border-color: var(--th-teal);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), var(--th-ring);
+}
+
+html[data-theme="dark"] .health-search-icon {
+  color: var(--th-muted);
+}
+
+html[data-theme="dark"] .hospital-clear-button,
+html[data-theme="dark"] .health-search-clear,
+html[data-theme="dark"] .clear-search {
+  background: rgba(125, 190, 220, 0.12);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .hospital-clear-button:hover,
+html[data-theme="dark"] .health-search-clear:hover,
+html[data-theme="dark"] .clear-search:hover {
+  background: var(--th-teal);
+  color: #04222b;
+}
+
+html[data-theme="dark"] .health-filter-button,
+html[data-theme="dark"] .category-button {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid rgba(125, 190, 220, 0.22);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .health-filter-button.active,
+html[data-theme="dark"] .category-button.active,
+html[data-theme="dark"] .category-button:hover {
+  background: rgba(76, 195, 255, 0.16);
+  border-color: rgba(76, 195, 255, 0.5);
+  color: var(--th-blue);
+}
+
+/* ---- HospitalTreatments sticky navbar + buttons ---- */
+html[data-theme="dark"] .hospital-navbar {
+  background: linear-gradient(180deg, rgba(16, 34, 47, 0.96) 0%, rgba(13, 27, 42, 0.92) 100%);
+  border-bottom: 1px solid rgba(102, 209, 207, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 10px 30px -18px rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+html[data-theme="dark"] .hospital-login-button,
+html[data-theme="dark"] .hospital-menu-button,
+html[data-theme="dark"] .hospital-mobile-login-button {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid rgba(125, 190, 220, 0.22);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .hospital-login-button:hover {
+  background: rgba(34, 195, 201, 0.16);
+  color: var(--th-teal-bright);
+}
+
+html[data-theme="dark"] .hospital-nav-link:hover,
+html[data-theme="dark"] .hospital-active-nav-link,
+html[data-theme="dark"] .hospital-mobile-nav-link:hover {
+  background: rgba(34, 195, 201, 0.12);
+  color: var(--th-teal-bright);
+}
+
+html[data-theme="dark"] .results-info strong {
+  color: var(--th-heading);
+}
+
+/* ---- Modals / dialogs ---- */
+html[data-theme="dark"] .health-modal,
+html[data-theme="dark"] .donor-form-dialog,
+html[data-theme="dark"] .ambulance-request-dialog {
+  background: linear-gradient(180deg, #14303f 0%, #10222f 100%);
+  border: 1px solid rgba(125, 190, 220, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 40px 90px -30px rgba(0, 0, 0, 0.75);
+}
+
+html[data-theme="dark"] .health-modal-header {
+  background: linear-gradient(180deg, #14303f 88%, rgba(20, 48, 63, 0.96));
+  border-bottom: 1px solid rgba(125, 190, 220, 0.14);
+}
+
+html[data-theme="dark"] .health-modal-close,
+html[data-theme="dark"] .donor-form-close,
+html[data-theme="dark"] .ambulance-request-close {
+  background: rgba(125, 190, 220, 0.12);
+  border-color: rgba(125, 190, 220, 0.22);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .donor-form-dialog h2,
+html[data-theme="dark"] .ambulance-request-dialog h2 {
+  color: var(--th-heading);
+}
+
+html[data-theme="dark"] .donor-form-dialog p,
+html[data-theme="dark"] .donor-form-dialog label,
+html[data-theme="dark"] .ambulance-request-dialog p,
+html[data-theme="dark"] .ambulance-request-dialog label,
+html[data-theme="dark"] .ambulance-request-note {
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .donor-form-dialog input,
+html[data-theme="dark"] .donor-form-dialog select,
+html[data-theme="dark"] .donor-form-dialog textarea,
+html[data-theme="dark"] .ambulance-request-dialog input,
+html[data-theme="dark"] .ambulance-request-dialog select,
+html[data-theme="dark"] .ambulance-request-dialog textarea {
+  background: linear-gradient(180deg, #0e2130 0%, #0b1a27 100%);
+  border: 1px solid rgba(125, 190, 220, 0.22);
+  color: var(--th-heading);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .donor-form-dialog input:focus,
+html[data-theme="dark"] .donor-form-dialog select:focus,
+html[data-theme="dark"] .donor-form-dialog textarea:focus,
+html[data-theme="dark"] .ambulance-request-dialog input:focus,
+html[data-theme="dark"] .ambulance-request-dialog select:focus,
+html[data-theme="dark"] .ambulance-request-dialog textarea:focus {
+  border-color: var(--th-teal);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), var(--th-ring);
+}
+
+html[data-theme="dark"] .donor-form-actions button,
+html[data-theme="dark"] .ambulance-request-actions button {
+  background: #14303f;
+  border-color: rgba(125, 190, 220, 0.22);
+  color: var(--th-text);
+}
+
+html[data-theme="dark"] .donor-form-error,
+html[data-theme="dark"] .ambulance-request-error {
+  background: rgba(220, 60, 60, 0.12);
+  border-color: rgba(255, 120, 120, 0.35);
+  color: #ff9b9b;
+}
+
+/* ---- MediaCentre data-driven accent chips ---- */
+html[data-theme="dark"] .media-icon {
+  background: rgba(255, 255, 255, 0.06);
+  background: color-mix(in srgb, var(--media-color) 22%, transparent);
+}
+
+html[data-theme="dark"] .meta-badge {
+  background: rgba(125, 190, 220, 0.12);
+}
+
+/* ---- RareCases inner scrollbar ---- */
+html[data-theme="dark"] .full-description::-webkit-scrollbar-track {
+  background: rgba(125, 190, 220, 0.08);
+}
+
+html[data-theme="dark"] .full-description::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #22c3c9 0%, #0b9ca3 100%);
+}

@@ -1,0 +1,3174 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background: #ffffff;
+  color: #172033;
+
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.hospital-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   TOP ANNOUNCEMENT
+========================================================= */
+
+.top-announcement {
+  width: 100%;
+  min-height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 30px;
+
+  background: #075082;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.announcement-item {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  height: 39px;
+}
+
+.announcement-right {
+  justify-content: center;
+}
+
+
+/* =========================================================
+   UTILITY BAR
+========================================================= */
+
+.utility-bar {
+  width: 100%;
+  height: 37px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  padding: 0 30px;
+
+  background: #36b3b1;
+  color: #ffffff;
+
+  position: relative;
+  z-index: 6000;
+}
+
+.utility-left,
+.utility-right {
+  display: flex;
+  align-items: center;
+}
+
+.utility-left {
+  gap: 20px;
+}
+
+.utility-right {
+  gap: 18px;
+}
+
+.utility-left button {
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-size: 15px;
+
+  white-space: nowrap;
+
+  transition: 0.2s ease;
+}
+
+.utility-left button:hover {
+  color: #083e62;
+  font-size:18px;
+}
+
+.whatsapp-link,
+.phone-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.whatsapp-icon {
+  width: 19px;
+  height: 19px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+
+  font-size: 8px;
+}
+
+.whatsapp-link:hover,
+.phone-link:hover {
+  color: #073f62;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+  width: 100%;
+  height: 79px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 24px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #dfe5e9;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 5000;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.navbar-logo {
+  min-width: 290px;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-symbol {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 9px;
+
+  background: #075082;
+  color: #ffffff;
+
+  border-radius: 4px;
+
+  position: relative;
+
+  font-size: 29px;
+  font-weight: 800;
+}
+
+.brand-symbol::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 7px;
+
+  border: 2px solid rgba(255, 255, 255, 0.6);
+
+  border-radius: 3px;
+}
+
+.brand-symbol span {
+  position: relative;
+  z-index: 1;
+}
+
+.logo-content {
+  display: flex;
+  flex-direction: column;
+
+  margin-right: 12px;
+}
+
+.logo-name {
+  color: #075082;
+
+  font-size: 29px;
+  font-weight: 800;
+
+  line-height: 0.95;
+
+  letter-spacing: -1px;
+}
+
+.logo-subtitle {
+  margin-top: 5px;
+
+  color: #075082;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   ANNIVERSARY
+========================================================= */
+
+.anniversary-badge {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding-left: 10px;
+
+  border-left: 1px solid #d8e0e5;
+
+  color: #075082;
+}
+
+.anniversary-badge strong {
+  font-family: Georgia, serif;
+
+  font-size: 31px;
+
+  line-height: 1;
+}
+
+.anniversary-badge span {
+  font-size: 6px;
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar-menu {
+  flex: 1;
+
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 3px;
+}
+
+.main-nav-button {
+  height: 79px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 13px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #124568;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.main-nav-button span {
+  margin-left: 6px;
+
+  font-size: 10px;
+}
+
+.main-nav-button:hover,
+.main-nav-button.active {
+  font-size:18px;
+  color: #e25c0b;
+}
+
+
+/* =========================================================
+   NORMAL DROPDOWNS
+========================================================= */
+
+.nav-dropdown {
+  height: 100%;
+
+  position: relative;
+}
+
+.nav-dropdown .dropdown-menu {
+  position: absolute;
+
+  top: 79px;
+  left: 0;
+
+  width: 235px;
+
+  padding: 5px 0;
+
+  background: #ffffff;
+
+  border-top: 3px solid #e25c0b;
+
+  border-radius: 0 0 5px 5px;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.15);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(8px);
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+
+  z-index: 7000;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateY(0);
+}
+
+.dropdown-menu button {
+  width: 100%;
+
+  display: block;
+
+  padding: 13px 18px;
+
+  border: none;
+  border-bottom: 1px solid #eeeeee;
+
+  background: #ffffff;
+
+  color: #244d69;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  transition: 0.2s ease;
+}
+
+.dropdown-menu button:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu button:hover {
+  padding-left: 23px;
+
+  background: #f3f9fb;
+
+  color: #e25c0b;
+}
+
+
+/* =========================================================
+   APPOINTMENT
+========================================================= */
+
+.appointment-button {
+  height: 42px;
+
+  margin-left: 15px;
+
+  padding: 0 19px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  background: #e25c0b;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  transition: 0.25s ease;
+}
+
+.appointment-button:hover {
+  background: #c74e05;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MEGA MENU BACKDROP
+========================================================= */
+
+.mega-menu-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  z-index: 4998;
+}
+
+
+/* =========================================================
+   COMMON MEGA MENU
+========================================================= */
+
+.mega-menu {
+  position: fixed;
+
+  top: 156px;
+  left: 50%;
+
+  width: min(1450px, 94vw);
+
+  max-height: calc(100vh - 175px);
+
+  padding: 30px 40px 38px;
+
+  transform: translateX(-50%);
+
+  background: #ffffff;
+
+  border-radius: 0 0 8px 8px;
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.2);
+
+  overflow-y: auto;
+
+  z-index: 4999;
+
+  animation: megaMenuOpen 0.2s ease;
+}
+
+@keyframes megaMenuOpen {
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, 0);
+  }
+}
+
+
+/* =========================================================
+   MEGA MENU HEADER
+========================================================= */
+
+.mega-menu-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding-bottom: 20px;
+
+  margin-bottom: 20px;
+
+  border-bottom: 1px solid #e5eaed;
+}
+
+.mega-menu-small-title {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #159e9e;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.mega-menu-header h2 {
+  color: #075082;
+
+  font-size: 28px;
+
+  line-height: 1.2;
+}
+
+.mega-menu-close {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid #d9e1e5;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  color: #075082;
+
+  font-size: 29px;
+
+  transition: 0.2s ease;
+}
+
+.mega-menu-close:hover {
+  background: #075082;
+
+  color: #ffffff;
+
+  transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   MEGA MENU ACTION
+========================================================= */
+
+.mega-menu-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-bottom: 20px;
+}
+
+.mega-info-button {
+  padding: 10px 17px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  border: 1px solid #075082;
+
+  border-radius: 4px;
+
+  background: #ffffff;
+
+  color: #075082;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mega-info-button:hover {
+  background: #075082;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   HOSPITAL MENU
+========================================================= */
+
+.hospital-groups {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 32px 45px;
+}
+
+.hospital-state-group h3 {
+  display: inline-block;
+
+  margin-bottom: 12px;
+
+  padding-bottom: 5px;
+
+  border-bottom: 3px solid #075082;
+
+  color: #075082;
+
+  font-size: 19px;
+}
+
+.hospital-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.hospital-list-item {
+  width: 100%;
+  min-height: 45px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 7px 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #63727c;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  transition: 0.2s ease;
+}
+
+.hospital-list-item:hover {
+  color: #075082;
+
+  transform: translateX(4px);
+}
+
+.hospital-building-icon {
+  width: 24px;
+
+  flex-shrink: 0;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   TREATMENT MEGA MENU
+========================================================= */
+
+.treatment-mega-menu {
+  width: min(1450px, 94vw);
+}
+
+.treatment-columns {
+  display: grid;
+
+  grid-template-columns:
+    0.85fr
+    1.4fr;
+
+  gap: 45px;
+}
+
+.treatment-column {
+  min-width: 0;
+}
+
+.procedures-column {
+  padding-left: 35px;
+
+  border-left: 1px solid #e5eaed;
+}
+
+
+/* =========================================================
+   MEGA COLUMN HEADING
+========================================================= */
+
+.mega-column-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.mega-column-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #eefafb;
+
+  color: #0b9ca3;
+
+  font-size: 20px;
+}
+
+.mega-column-heading h3 {
+  color: #075082;
+
+  font-size: 21px;
+}
+
+
+/* =========================================================
+   TREATMENT LINKS
+========================================================= */
+
+.mega-link-list {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 2px;
+}
+
+.mega-link-item {
+  width: 100%;
+
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 8px 10px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: transparent;
+
+  color: #50616c;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  transition: 0.2s ease;
+}
+
+.mega-link-item:hover {
+  background: #f2fafb;
+
+  color: #075082;
+
+  transform: translateX(4px);
+}
+
+.mega-link-icon {
+  width: 23px;
+
+  color: #0b9ca3;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   PROCEDURES GRID
+========================================================= */
+
+.procedure-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  column-gap: 22px;
+
+  row-gap: 4px;
+}
+
+.procedure-item {
+  min-height: 45px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 8px 7px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: transparent;
+
+  color: #50616c;
+
+  text-align: left;
+
+  font-size: 13px;
+
+  line-height: 1.35;
+
+  transition: 0.2s ease;
+}
+
+.procedure-item:hover {
+  background: #f2fafb;
+
+  color: #075082;
+
+  transform: translateX(3px);
+}
+
+.procedure-icon {
+  width: 20px;
+
+  flex-shrink: 0;
+
+  color: #0b9ca3;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   VIEW ALL BUTTON
+========================================================= */
+
+.view-all-button {
+  margin-top: 18px;
+
+  padding: 11px 17px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  border: 1px solid #075082;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #075082;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.view-all-button:hover {
+  background: #075082;
+
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+.view-all-button span {
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   SERVICES MEGA MENU
+========================================================= */
+
+.services-mega-menu {
+  width: min(1100px, 94vw);
+}
+
+.services-mega-content {
+  display: grid;
+
+  grid-template-columns:
+    0.75fr
+    1.5fr;
+
+  gap: 45px;
+}
+
+
+/* =========================================================
+   SERVICE INTRO
+========================================================= */
+
+.service-menu-intro {
+  padding: 25px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eaf8fa,
+      #f8ffff
+    );
+
+  border: 1px solid #d7edef;
+}
+
+.service-menu-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 17px;
+
+  border-radius: 14px;
+
+  background: #0b9ca3;
+
+  color: #ffffff;
+
+  font-size: 28px;
+}
+
+.service-menu-intro h3 {
+  margin-bottom: 12px;
+
+  color: #075082;
+
+  font-size: 22px;
+}
+
+.service-menu-intro p {
+  color: #667085;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   SERVICE LIST
+========================================================= */
+
+.service-menu-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 8px 18px;
+}
+
+.service-menu-item {
+  min-height: 60px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 13px;
+
+  border: 1px solid #e3ebee;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #435765;
+
+  text-align: left;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.service-menu-item:hover {
+  border-color: #9bd5d8;
+
+  background: #f3fbfc;
+
+  color: #075082;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 15px rgba(20, 80, 100, 0.08);
+}
+
+.service-menu-item-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #eaf8fa;
+
+  color: #0b9ca3;
+
+  font-size: 11px;
+}
+
+.service-menu-arrow {
+  margin-left: auto;
+
+  color: #0b9ca3;
+
+  font-size: 16px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hospital-hero {
+  width: 100%;
+
+  height: 570px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background: #dcecf2;
+}
+
+.hospital-hero-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center center;
+}
+
+.hero-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 35, 58, 0.62) 0%,
+      rgba(0, 35, 58, 0.22) 38%,
+      rgba(0, 0, 0, 0) 70%
+    );
+}
+
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
+
+.hero-overlay-content {
+  position: absolute;
+
+  left: 5%;
+  top: 65%;
+
+  width: 500px;
+
+  transform: translateY(-50%);
+
+  color: #ffffff;
+}
+
+.hero-overlay-content h1 {
+  margin-bottom: 0px;
+
+  font-size: clamp(42px, 5vw, 62px);
+
+  line-height: 1.05;
+
+  font-weight: 800;
+
+  text-shadow:
+    0 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-overlay-content h1 span {
+  color: #66d1cf;
+}
+
+.hero-overlay-content p {
+  max-width: 470px;
+
+  margin-bottom: 25px;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+.hero-appointment-button {
+  padding: 13px 23px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  background: #e25c0b;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero-appointment-button:hover {
+  background: #c64d04;
+}
+
+
+/* =========================================================
+   FLOATING PHONE
+========================================================= */
+
+.floating-phone {
+  position: absolute;
+
+  right: 0;
+  bottom: 53px;
+
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px 0 7px;
+
+  background: #0b9ca3;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  border-radius: 23px 0 0 23px;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.18);
+
+  z-index: 10;
+}
+
+.floating-phone-icon {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 7px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  color: #0b9ca3;
+
+  font-size: 16px;
+}
+
+.floating-phone strong {
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   CALLBACK
+========================================================= */
+
+.floating-callback {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  height: 44px;
+
+  padding: 0 22px;
+
+  border: none;
+
+  border-radius: 22px 0 0 0;
+
+  background: #075082;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.18);
+
+  z-index: 11;
+}
+
+.floating-callback span {
+  margin-right: 7px;
+}
+
+.floating-callback:hover {
+  background: #053d63;
+}
+
+
+/* =========================================================
+   SERVICES SECTION
+========================================================= */
+
+.services-section {
+  width: 100%;
+
+  padding: 90px 8%;
+
+  background: #ffffff;
+
+  text-align: center;
+}
+
+.section-label {
+  margin-bottom: 12px;
+
+  color: #0b9ca3;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.services-section > h2 {
+  margin-bottom: 10px;
+
+  color: #172033;
+
+  font-size: clamp(31px, 4vw, 43px);
+}
+
+.section-description {
+  margin-bottom: 42px;
+
+  color: #718096;
+
+  font-size: 15px;
+}
+
+.service-cards {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 18px;
+}
+
+.service-card {
+  min-height: 320px;
+
+  padding: 28px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e1eaed;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 25px rgba(25, 70, 90, 0.06);
+
+  transition: 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+
+  border-color: #a9d9dc;
+
+  box-shadow:
+    0 18px 40px rgba(20, 80, 100, 0.12);
+}
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 14px;
+
+  background: #eefafb;
+
+  font-size: 28px;
+}
+
+.service-card h3 {
+  margin-bottom: 12px;
+
+  color: #172033;
+
+  font-size: 18px;
+}
+
+.service-card p {
+  flex: 1;
+
+  margin-bottom: 20px;
+
+  color: #718096;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+.secondary-btn {
+  padding: 10px 18px;
+
+  border: 1px solid #0b9ca3;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #0b9ca3;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.secondary-btn:hover {
+  background: #0b9ca3;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section {
+  width: 100%;
+
+  padding: 90px 8%;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 60px;
+
+  align-items: center;
+
+  background: #f7fbfc;
+}
+
+.about-content {
+  max-width: 650px;
+}
+
+.about-content h2 {
+  margin-bottom: 20px;
+
+  color: #172033;
+
+  font-size: clamp(30px, 3.5vw, 43px);
+
+  line-height: 1.2;
+}
+
+.about-content p {
+  margin-bottom: 14px;
+
+  color: #667085;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+.about-content .primary-btn {
+  margin-top: 10px;
+}
+
+.primary-btn {
+  padding: 14px 22px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #0b9ca3;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.primary-btn:hover {
+  background: #087f87;
+
+  transform: translateY(-2px);
+}
+
+.about-box {
+  width: 100%;
+  height: 480px;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 20px 50px rgba(20, 70, 90, 0.12);
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* =========================================================
+   DOWNLOAD APP
+========================================================= */
+
+.download-app-section {
+  width: 100%;
+
+  padding: 90px 8%;
+
+  display: grid;
+
+  grid-template-columns:
+    1.1fr 0.9fr;
+
+  align-items: center;
+
+  gap: 70px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eaf8fa,
+      #ffffff
+    );
+}
+
+.download-app-content {
+  max-width: 650px;
+}
+
+.download-app-content h2 {
+  margin-bottom: 18px;
+
+  color: #172033;
+
+  font-size: clamp(31px, 4vw, 48px);
+}
+
+.download-description {
+  margin-bottom: 25px;
+
+  color: #667085;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+.download-app-content h4 {
+  margin-bottom: 11px;
+
+  color: #344054;
+
+  font-size: 14px;
+}
+
+.phone-input-wrapper {
+  width: 100%;
+  max-width: 520px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 25px;
+
+  overflow: hidden;
+
+  border: 1px solid #d8e6e9;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+}
+
+.country-code {
+  padding-left: 15px;
+
+  color: #475467;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.phone-input-wrapper input {
+  flex: 1;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 12px;
+
+  border: none;
+
+  outline: none;
+
+  font-size: 14px;
+}
+
+.send-sms-btn {
+  height: 100%;
+
+  padding: 0 20px;
+
+  border: none;
+
+  background: #0b9ca3;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.send-sms-btn:hover {
+  background: #087f87;
+}
+
+.app-store-buttons {
+  display: flex;
+
+  gap: 13px;
+}
+
+.store-button {
+  min-width: 170px;
+
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  border-radius: 7px;
+
+  background: #172033;
+
+  color: #ffffff;
+
+  text-decoration: none;
+}
+
+.store-button:hover {
+  background: #080f1c;
+
+  transform: translateY(-2px);
+}
+
+.store-button > span {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.store-button small {
+  font-size: 8px;
+
+  opacity: 0.8;
+}
+
+.store-button strong {
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PHONE MOCKUP
+========================================================= */
+
+.download-app-image {
+  display: flex;
+
+  justify-content: center;
+}
+
+.phone-mockup {
+  width: 275px;
+  height: 490px;
+
+  padding: 10px;
+
+  background: #172033;
+
+  border: 6px solid #0d1422;
+
+  border-radius: 38px;
+
+  box-shadow:
+    0 30px 70px rgba(10, 35, 50, 0.25);
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+
+  padding: 45px 18px 20px;
+
+  overflow: hidden;
+
+  border-radius: 27px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eaf8fa,
+      #ffffff
+    );
+
+  text-align: center;
+}
+
+.phone-logo {
+  width: 55px;
+  height: 55px;
+
+  margin: 10px auto 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background: #0b9ca3;
+
+  color: #ffffff;
+
+  font-size: 38px;
+}
+
+.phone-screen h3 {
+  margin-bottom: 6px;
+
+  font-size: 20px;
+}
+
+.phone-screen > p {
+  margin-bottom: 25px;
+
+  color: #7a8797;
+
+  font-size: 12px;
+}
+
+.app-card {
+  margin-bottom: 14px;
+
+  padding: 18px 13px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  text-align: left;
+
+  box-shadow:
+    0 6px 20px rgba(20, 70, 90, 0.08);
+}
+
+.app-card strong {
+  font-size: 13px;
+}
+
+.app-card span {
+  color: #8792a1;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   ENQUIRY DRAWER
+========================================================= */
+
+.enquiry-layer {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+}
+
+.enquiry-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.enquiry-side-drawer {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: min(520px, 94vw);
+  height: 100vh;
+
+  padding: 30px;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  box-shadow:
+    -10px 0 40px rgba(0, 0, 0, 0.2);
+
+  animation: drawerOpen 0.25s ease;
+}
+
+@keyframes drawerOpen {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.enquiry-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 20px;
+
+  margin-bottom: 25px;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.enquiry-drawer-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #0b9ca3;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.enquiry-drawer-header h2 {
+  color: #123d68;
+
+  font-size: 27px;
+}
+
+.enquiry-close-button {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #dfe5e9;
+
+  border-radius: 50%;
+
+  background: #f7f9fa;
+
+  color: #123d68;
+
+  font-size: 29px;
+}
+
+.enquiry-close-button:hover {
+  background: #123d68;
+
+  color: #ffffff;
+
+  transform: rotate(90deg);
+}
+
+.enquiry-drawer-about {
+  margin-bottom: 22px;
+}
+
+.enquiry-drawer-about h3 {
+  margin-bottom: 7px;
+
+  color: #123d68;
+
+  font-size: 21px;
+}
+
+.enquiry-drawer-about h4 {
+  margin-bottom: 13px;
+
+  color: #0b9ca3;
+
+  font-size: 14px;
+}
+
+.enquiry-drawer-about p {
+  margin-bottom: 11px;
+
+  color: #555555;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+.enquiry-form-description {
+  margin-bottom: 23px;
+
+  color: #666666;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+.form-row {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 14px;
+}
+
+.form-group {
+  margin-bottom: 17px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #333333;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  padding: 12px 13px;
+
+  border: 1px solid #d5dbe0;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  color: #172033;
+
+  font-size: 14px;
+}
+
+.form-group input {
+  height: 47px;
+}
+
+.form-group textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0b9ca3;
+
+  box-shadow:
+    0 0 0 3px rgba(11, 156, 163, 0.1);
+}
+
+.enquiry-submit-btn {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #e25c0b;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.enquiry-submit-btn:hover {
+  background: #c74e05;
+}
+
+
+
+/* =========================================================
+   LARGE TABLET
+========================================================= */
+
+@media (max-width: 1250px) {
+
+  .navbar {
+    padding: 0 15px;
+  }
+
+  .navbar-logo {
+    min-width: 200px;
+
+  }
+
+  .main-nav-button {
+    padding: 0 8px;
+
+    font-size: 13px;
+  }
+
+  .appointment-button {
+    padding: 0 13px;
+  }
+
+  .hospital-groups {
+    gap: 25px;
+  }
+
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .top-announcement {
+    padding: 0 15px;
+
+    font-size: 11px;
+  }
+
+  .utility-bar {
+    padding: 0 15px;
+  }
+
+  .utility-left {
+    gap: 30px;
+  }
+
+  .utility-left button {
+    font-size: 11px;
+  }
+
+  .utility-right {
+    gap: 10px;
+  }
+
+  .whatsapp-link,
+  .phone-link {
+    font-size: 11px;
+  }
+
+
+  /* NAVBAR */
+
+  .navbar {
+    height: auto;
+
+    min-height: 76px;
+
+    flex-wrap: wrap;
+
+    padding: 10px 15px;
+  }
+
+  .navbar-logo {
+    flex: 1;
+
+    min-width: 230px;
+  }
+
+  .navbar-menu {
+    order: 3;
+
+    width: 100%;
+
+    height: 48px;
+
+    justify-content: flex-start;
+
+    overflow-x: auto;
+
+    border-top:
+      1px solid #edf1f4;
+  }
+
+  .main-nav-button {
+    height: 48px;
+
+    flex-shrink: 0;
+  }
+
+  .nav-dropdown {
+    height: 48px;
+  }
+
+  .nav-dropdown .dropdown-menu {
+    top: 48px;
+  }
+
+  .appointment-button {
+    display: none;
+  }
+
+
+  /* MEGA MENUS */
+
+  .mega-menu {
+    top: 134px;
+
+    width: 94vw;
+  }
+
+  .hospital-groups {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .treatment-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .procedures-column {
+    padding-left: 0;
+
+    padding-top: 25px;
+
+    border-left: none;
+
+    border-top: 1px solid #e5eaed;
+  }
+
+  .services-mega-content {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* HERO */
+
+  .hospital-hero {
+    height: 500px;
+  }
+
+  .hero-overlay-content {
+    left: 5%;
+  }
+
+
+  /* SERVICES */
+
+  .service-cards {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  /* ABOUT */
+
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+
+  .about-content {
+    max-width: 750px;
+  }
+
+
+  /* DOWNLOAD */
+
+  .download-app-section {
+    grid-template-columns: 1fr;
+  }
+
+  .download-app-content {
+    margin: auto;
+  }
+
+  .download-app-image {
+    margin-top: 20px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  /* TOP BAR */
+
+  .top-announcement {
+    min-height: 55px;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    padding: 5px 12px;
+
+    text-align: center;
+
+    font-size: 9px;
+  }
+
+  .announcement-item {
+    height: auto;
+
+    justify-content: center;
+  }
+
+
+  /* UTILITY */
+
+  .utility-bar {
+    height: auto;
+
+    min-height: 42px;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 7px 10px;
+  }
+
+  .utility-left {
+    width: 100%;
+
+    justify-content: center;
+
+    overflow-x: auto;
+
+    gap: 14px;
+  }
+
+  .utility-left button {
+    flex-shrink: 0;
+
+    font-size: 9px;
+  }
+
+  .utility-right {
+    width: 100%;
+
+    justify-content: center;
+
+    gap: 13px;
+  }
+
+  .whatsapp-link,
+  .phone-link {
+    font-size: 9px;
+  }
+
+
+  /* NAVBAR */
+
+  .navbar {
+    padding: 9px 10px;
+  }
+
+  .navbar-logo {
+    min-width: auto;
+  }
+
+  .brand-symbol {
+    width: 38px;
+    height: 38px;
+
+    font-size: 22px;
+  }
+
+  .logo-name {
+    font-size: 23px;
+  }
+
+  .logo-subtitle {
+    font-size: 8px;
+  }
+
+  .anniversary-badge {
+    display: none;
+  }
+
+  .navbar-menu {
+    gap: 0;
+
+    height: 43px;
+  }
+
+  .main-nav-button {
+    height: 43px;
+
+    padding: 0 8px;
+
+    font-size: 11px;
+  }
+
+  .main-nav-button span {
+    margin-left: 3px;
+
+    font-size: 8px;
+  }
+
+  .nav-dropdown {
+    height: 43px;
+  }
+
+  .nav-dropdown .dropdown-menu {
+    top: 43px;
+
+    width: 190px;
+  }
+
+
+  /* MEGA MENU */
+
+  .mega-menu {
+    top: 157px;
+
+    width: 96vw;
+
+    max-height:
+      calc(100vh - 165px);
+
+    padding: 20px 16px;
+  }
+
+  .mega-menu-header h2 {
+    font-size: 22px;
+  }
+
+  .mega-menu-close {
+    width: 38px;
+    height: 38px;
+
+    font-size: 25px;
+  }
+
+
+  /* HOSPITALS */
+
+  .hospital-groups {
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+  .hospital-state-group h3 {
+    font-size: 17px;
+  }
+
+  .hospital-list-item {
+    font-size: 12px;
+  }
+
+
+  /* TREATMENTS */
+
+  .treatment-columns {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+  }
+
+  .procedures-column {
+    padding-top: 20px;
+  }
+
+  .mega-link-item {
+    font-size: 12px;
+
+    min-height: 40px;
+  }
+
+  .procedure-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .procedure-item {
+    font-size: 12px;
+
+    min-height: 40px;
+  }
+
+
+  /* SERVICES MEGA MENU */
+
+  .services-mega-content {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .service-menu-intro {
+    padding: 18px;
+  }
+
+  .service-menu-intro h3 {
+    font-size: 19px;
+  }
+
+  .service-menu-list {
+    grid-template-columns: 1fr;
+
+    gap: 7px;
+  }
+
+  .service-menu-item {
+    min-height: 52px;
+
+    font-size: 12px;
+  }
+
+
+  /* HERO */
+
+  .hospital-hero {
+    height: 440px;
+  }
+
+  .hero-image-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0, 35, 58, 0.72),
+        rgba(0, 35, 58, 0.22)
+      );
+  }
+
+  .hero-overlay-content {
+    left: 22px;
+    right: 22px;
+
+    width: auto;
+  }
+
+  .hero-overlay-content h1 {
+    font-size: 38px;
+  }
+
+  .hero-overlay-content p {
+    font-size: 13px;
+  }
+
+  .hero-appointment-button {
+    padding: 12px 19px;
+  }
+
+
+  /* FLOATING PHONE */
+
+  .floating-phone {
+    bottom: 48px;
+
+    height: 38px;
+
+    padding-right: 10px;
+  }
+
+  .floating-phone-icon {
+    width: 30px;
+    height: 30px;
+
+    font-size: 13px;
+  }
+
+  .floating-phone strong {
+    font-size: 10px;
+  }
+
+  .floating-callback {
+    height: 43px;
+
+    padding: 0 15px;
+
+    font-size: 12px;
+  }
+
+
+  /* SERVICES */
+
+  .services-section {
+    padding: 65px 20px;
+  }
+
+  .services-section > h2 {
+    font-size: 30px;
+  }
+
+  .service-cards {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .service-card {
+    min-height: 270px;
+  }
+
+
+  /* ABOUT */
+
+  .about-section {
+    padding: 65px 20px;
+
+    gap: 35px;
+  }
+
+  .about-content h2 {
+    font-size: 29px;
+  }
+
+  .about-box {
+    height: 280px;
+  }
+
+
+  /* DOWNLOAD */
+
+  .download-app-section {
+    padding: 65px 20px;
+
+    gap: 45px;
+  }
+
+  .download-app-content h2 {
+    font-size: 31px;
+  }
+
+  .phone-input-wrapper {
+    max-width: 100%;
+  }
+
+  .app-store-buttons {
+    flex-direction: column;
+  }
+
+  .store-button {
+    width: 200px;
+  }
+
+
+  /* ENQUIRY */
+
+  .enquiry-side-drawer {
+    width: 100%;
+
+    padding: 23px 18px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .logo-name {
+    font-size: 20px;
+  }
+
+  .utility-left {
+    gap: 9px;
+  }
+
+  .utility-left button {
+    font-size: 8px;
+  }
+
+  .whatsapp-link,
+  .phone-link {
+    font-size: 8px;
+  }
+
+  .main-nav-button {
+    padding: 0 6px;
+
+    font-size: 10px;
+  }
+
+  .hospital-hero {
+    height: 410px;
+  }
+
+  .hero-overlay-content h1 {
+    font-size: 32px;
+  }
+
+  .hero-overlay-content p {
+    font-size: 12px;
+  }
+
+  .floating-phone strong {
+    font-size: 9px;
+  }
+
+  .floating-callback {
+    padding: 0 11px;
+
+    font-size: 11px;
+  }
+
+
+}
+
+/* =========================================
+   RARE CASES SECTION
+========================================= */
+
+.rare-cases-section {
+  width: 100%;
+  padding: 90px 20px;
+  background: #f7fafb;
+}
+
+.rare-cases-container {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.rare-cases-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.rare-cases-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #008c95;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.rare-cases-header h2 {
+  margin: 0;
+  color: #12343b;
+  font-size: 42px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* =========================================
+   VIEW ALL BUTTON
+========================================= */
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border: 1px solid #008c95;
+  border-radius: 8px;
+  color: #008c95;
+  background: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.view-all-btn span {
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.view-all-btn:hover {
+  color: #ffffff;
+  background: #008c95;
+}
+
+.view-all-btn:hover span {
+  transform: translateX(5px);
+}
+
+/* =========================================
+   CARD GRID
+========================================= */
+
+.rare-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.rare-case-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5eeee;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 70, 80, 0.07);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.rare-case-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 45px rgba(0, 70, 80, 0.14);
+}
+
+/* =========================================
+   CARD IMAGE
+========================================= */
+
+.rare-case-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #dfeff1;
+}
+
+.rare-case-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.rare-case-card:hover .rare-case-image img {
+  transform: scale(1.06);
+}
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.case-category {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  padding: 7px 13px;
+  border-radius: 20px;
+  color: #ffffff;
+  background: rgba(0, 140, 149, 0.95);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.rare-case-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 26px;
+}
+
+.rare-case-content h3 {
+  margin: 0 0 15px;
+  color: #12343b;
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.rare-case-content p {
+  margin: 0 0 13px;
+  color: #667085;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   READ MORE
+========================================= */
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 12px;
+  color: #008c95;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.read-more span {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.read-more:hover {
+  color: #006f76;
+}
+
+.read-more:hover span {
+  transform: translateX(5px);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+  .rare-cases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rare-cases-header h2 {
+    font-size: 36px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+  .rare-cases-section {
+    padding: 60px 16px;
+  }
+
+  .rare-cases-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .rare-cases-header h2 {
+    font-size: 30px;
+  }
+
+  .rare-cases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rare-case-image {
+    height: 210px;
+  }
+
+  .rare-case-content {
+    padding: 22px;
+  }
+
+  .rare-case-content h3 {
+    font-size: 19px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.specialities-section {
+  width: 100%;
+  padding: 50px 6%;
+  background: #f8f9fb;
+  box-sizing: border-box;
+}
+
+.specialities-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* LEFT */
+
+.specialities-content {
+  flex: 1;
+}
+
+.specialities-content h2 {
+  margin: 0 0 30px;
+  color: #222;
+  font-size: 30px;
+  font-weight: 600;
+  border-left: 4px solid #d71920;
+  padding-left: 15px;
+}
+
+/* COLUMNS */
+
+.specialities-flex {
+  display: flex;
+  gap: 70px;
+}
+
+.speciality-box {
+  flex: 1;
+}
+
+.speciality-box h3 {
+  margin: 0 0 15px;
+  color: #d71920;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* NORMAL LINKS */
+
+.speciality-box a {
+  position: relative;
+
+  display: block;
+
+  padding: 9px 0;
+
+  margin-bottom: 5px;
+
+  color: #444;
+  text-decoration: none;
+
+  background: transparent;
+
+  font-size: 15px;
+
+  transition: all 0.3s ease;
+}
+
+/* SMALL LINE */
+
+.speciality-box a::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 3px;
+
+  width: 0;
+  height: 2px;
+
+  background: #d71920;
+
+  transition: width 0.3s ease;
+}
+
+/* HOVER */
+
+.speciality-box a:hover {
+  color: #d71920;
+  padding-left: 8px;
+}
+
+.speciality-box a:hover::before {
+  width: 35px;
+}
+
+/* VIEW ALL */
+
+.speciality-box .view-all {
+  display: inline-block;
+
+  margin-top: 12px;
+
+  color: #d71920;
+
+  font-weight: 600;
+}
+
+.speciality-box .view-all::before {
+  display: none;
+}
+
+.speciality-box .view-all:hover {
+  padding-left: 5px;
+}
+
+/* IMAGE */
+
+.specialities-image {
+  width: 38%;
+  height: 460px;
+
+  overflow: hidden;
+
+  border-radius: 25px;
+}
+
+.specialities-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 0.5s ease;
+}
+
+.specialities-image:hover img {
+  transform: scale(1.04);
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .specialities-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .specialities-content {
+    width: 100%;
+  }
+
+  .specialities-image {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .specialities-section {
+    padding: 35px 20px;
+  }
+
+  .specialities-flex {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .specialities-content h2 {
+    font-size: 24px;
+  }
+
+  .speciality-box h3 {
+    font-size: 18px;
+  }
+
+  .speciality-box a {
+    font-size: 14px;
+  }
+
+  .specialities-image {
+    height: 300px;
+    border-radius: 18px;
+  }
+}

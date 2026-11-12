@@ -1,0 +1,818 @@
+/* =========================================================
+   GLOSSY MODERNIZATION LAYER
+   ---------------------------------------------------------
+   Content-preserving restyle. Loaded LAST (after every page
+   stylesheet) so it wins the cascade; selectors are prefixed
+   with `body` to also win on specificity over page rules and
+   runtime-injected component styles. Only surface paint is
+   changed (backgrounds, borders, shadows, specular highlights,
+   hover feedback) — layout dimensions, copy, data, routes and
+   behavior are untouched. Palette stays medical teal / blue /
+   navy / green with the hero's amber accent.
+   ========================================================= */
+
+:root {
+  /* Brand hues (kept from the existing palette) */
+  --gl-blue: #0b78b3;
+  --gl-blue-deep: #075f8d;
+  --gl-teal: #0b9ca3;
+  --gl-teal-bright: #14b8bf;
+  --gl-teal-deep: #087f87;
+  --gl-mint: #19c7b5;
+  --gl-cyan: #66d1cf;
+  --gl-navy: #123e5a;
+  --gl-navy-2: #0d2b44;
+  --gl-ink: #071b2b;
+  --gl-green: #20b486;
+  --gl-amber: #e25c0b;
+  --gl-amber-deep: #c64d04;
+
+  /* Neutrals */
+  --gl-bg: #f3f8fb;
+  --gl-surface: #ffffff;
+  --gl-line: rgba(11, 120, 179, 0.14);
+  --gl-line-soft: rgba(18, 62, 90, 0.08);
+
+  /* Specular + shadow recipes */
+  --gl-spec: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --gl-card-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(13, 43, 68, 0.05),
+    0 14px 34px -16px rgba(11, 120, 179, 0.22);
+  --gl-card-shadow-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 6px rgba(13, 43, 68, 0.06),
+    0 26px 54px -20px rgba(11, 120, 179, 0.34);
+  --gl-btn-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.14),
+    0 8px 18px -8px rgba(11, 156, 163, 0.55);
+  --gl-ring: 0 0 0 3px rgba(11, 156, 163, 0.16);
+}
+
+/* =========================================================
+   AMBIENT PAGE DEPTH
+   ========================================================= */
+
+body {
+  background-color: var(--gl-bg);
+  background-image:
+    radial-gradient(1100px 520px at 88% -8%, rgba(102, 209, 207, 0.16), transparent 60%),
+    radial-gradient(900px 480px at -6% 4%, rgba(11, 120, 179, 0.1), transparent 55%);
+  background-attachment: fixed;
+}
+
+body .public-layout,
+body .hospital-page {
+  position: relative;
+}
+
+/* Faint glossy wash on alternating landing sections */
+body .services-section {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(900px 360px at 50% -10%, rgba(102, 209, 207, 0.1), transparent 62%);
+}
+
+body .about-section {
+  background-color: #f6fbfc;
+  background-image:
+    radial-gradient(760px 420px at 100% 0%, rgba(11, 120, 179, 0.08), transparent 60%);
+}
+
+body .rare-cases-section {
+  background-image:
+    radial-gradient(900px 400px at 0% 0%, rgba(25, 199, 181, 0.08), transparent 58%);
+}
+
+body .download-app-section {
+  background-image:
+    radial-gradient(720px 380px at 92% 8%, rgba(102, 209, 207, 0.16), transparent 60%);
+}
+
+/* =========================================================
+   SHARED CHROME — UTILITY / ANNOUNCEMENT / NAVBAR
+   ========================================================= */
+
+body .common-announcement {
+  background: linear-gradient(90deg, #0b4778 0%, #0b78b3 100%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.12);
+}
+
+body .common-utility-bar {
+  background: linear-gradient(180deg, #a7dcf2 0%, #87ceeb 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+body .common-navbar {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(246, 251, 253, 0.88) 100%);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  backdrop-filter: blur(14px) saturate(1.5);
+  border-bottom: 1px solid rgba(11, 120, 179, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 10px 30px -18px rgba(13, 43, 68, 0.4);
+}
+
+body .common-logo-mark {
+  background: linear-gradient(160deg, #1596d6 0%, #0b78b3 55%, #075f8d 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 6px 14px -6px rgba(11, 120, 179, 0.6);
+}
+
+body .common-nav-button {
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body .common-nav-button:hover,
+body .common-nav-button.active {
+  background: linear-gradient(180deg, #f2fbff 0%, #e6f4fb 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 2px rgba(13, 43, 68, 0.05);
+}
+
+body .common-appointment-button {
+  background: linear-gradient(180deg, #1596d6 0%, #0b78b3 52%, #075f8d 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.16),
+    0 8px 18px -8px rgba(11, 120, 179, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+body .common-appointment-button:hover {
+  background: linear-gradient(180deg, #1596d6 0%, #0b78b3 52%, #075f8d 100%);
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.16),
+    0 12px 24px -10px rgba(11, 120, 179, 0.7);
+}
+
+/* Frosted glass dropdowns */
+body .common-dropdown,
+body .nested-dropdown {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 251, 253, 0.96) 100%);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(11, 120, 179, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 22px 50px -20px rgba(13, 43, 68, 0.4);
+}
+
+body .dropdown-simple-button:hover,
+body .dropdown-parent-button:hover,
+body .nested-dropdown-button:hover,
+body .common-login-dropdown button:hover {
+  background: linear-gradient(180deg, #f2fbff 0%, #e8f5fb 100%);
+}
+
+/* =========================================================
+   LANDING HERO
+   ========================================================= */
+
+body .hero-image-overlay {
+  background:
+    linear-gradient(90deg, rgba(2, 30, 49, 0.72) 0%, rgba(3, 42, 64, 0.34) 40%, rgba(0, 0, 0, 0) 72%),
+    linear-gradient(0deg, rgba(4, 26, 42, 0.4) 0%, rgba(0, 0, 0, 0) 34%);
+}
+
+body .hero-overlay-content h1 {
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.32);
+}
+
+body .hero-overlay-content h1 span {
+  color: var(--gl-cyan);
+  text-shadow: 0 0 26px rgba(102, 209, 207, 0.45);
+}
+
+body .hero-appointment-button {
+  background: linear-gradient(180deg, #f4731f 0%, #e25c0b 52%, #c64d04 100%);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+    0 10px 22px -10px rgba(226, 92, 11, 0.7);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+body .hero-appointment-button:hover {
+  background: linear-gradient(180deg, #f4731f 0%, #e25c0b 52%, #c64d04 100%);
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+    0 16px 30px -12px rgba(226, 92, 11, 0.8);
+}
+
+body .floating-phone {
+  background: linear-gradient(180deg, #12b3bb 0%, #0b9ca3 60%, #087f87 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 8px 20px -8px rgba(8, 127, 135, 0.6);
+}
+
+body .floating-callback {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 8px 20px -8px rgba(13, 43, 68, 0.45);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+body .floating-callback:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+/* =========================================================
+   GLOSSY CARD SURFACES
+   ========================================================= */
+
+body .service-card,
+body .stat-card,
+body .info-card,
+body .department-card,
+body .facility-card,
+body .doctor-card,
+body .service-item,
+body .fd-why-card,
+body .article-list-item,
+body .media-card,
+body .investor-card,
+body .financial-card,
+body .resource-card,
+body .why-item,
+body .detail-box,
+body .app-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f5fafc 100%);
+  border: 1px solid var(--gl-line);
+  box-shadow: var(--gl-card-shadow);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+body .service-card:hover,
+body .stat-card:hover,
+body .info-card:hover,
+body .department-card:hover,
+body .facility-card:hover,
+body .doctor-card:hover,
+body .fd-why-card:hover,
+body .media-card:hover,
+body .investor-card:hover,
+body .financial-card:hover,
+body .resource-card:hover,
+body .why-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(11, 156, 163, 0.4);
+  box-shadow: var(--gl-card-shadow-hover);
+}
+
+/* Icon chips get a glossy teal tint */
+body .service-icon {
+  background: linear-gradient(160deg, #e9fbfc 0%, #d3f3f5 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(11, 156, 163, 0.12),
+    0 6px 14px -8px rgba(11, 156, 163, 0.4);
+}
+
+body .card-icon,
+body .facility-icon,
+body .why-icon,
+body .resource-icon,
+body .media-icon {
+  filter: drop-shadow(0 4px 8px rgba(11, 120, 179, 0.18));
+}
+
+/* Image-bearing cards: glossy frame + depth (keep their overflow) */
+body .fd-doctor-card,
+body .rare-case-card {
+  border: 1px solid var(--gl-line);
+  box-shadow: var(--gl-card-shadow);
+}
+
+body .fd-doctor-card:hover,
+body .rare-case-card:hover {
+  border-color: rgba(11, 156, 163, 0.4);
+  box-shadow: var(--gl-card-shadow-hover);
+}
+
+body .fd-image-container {
+  background: linear-gradient(135deg, #e7f4ff 0%, #f3fbff 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body .fd-doctor-image,
+body .fd-default-image {
+  box-shadow: 0 8px 20px -8px rgba(13, 43, 68, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+body .case-category {
+  background: linear-gradient(180deg, rgba(20, 184, 191, 0.96) 0%, rgba(8, 127, 135, 0.96) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 14px -6px rgba(8, 127, 135, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Hospital-info hero card + symbol */
+body .hero-card {
+  background:
+    radial-gradient(420px 220px at 50% -10%, rgba(102, 209, 207, 0.18), transparent 65%),
+    linear-gradient(180deg, #ffffff 0%, #f4fafb 100%);
+  border: 1px solid var(--gl-line);
+  box-shadow: var(--gl-card-shadow);
+}
+
+body .hospital-symbol {
+  background: linear-gradient(160deg, #d7fbf3 0%, #b9f2e6 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(25, 199, 181, 0.18),
+    0 10px 24px -10px rgba(25, 199, 181, 0.5);
+}
+
+body .stat-card h3 {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* About image frame */
+body .about-box {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 26px 60px -24px rgba(20, 70, 90, 0.4);
+}
+
+/* =========================================================
+   DOWNLOAD APP PANEL + DEVICE
+   ========================================================= */
+
+body .phone-mockup {
+  background: linear-gradient(160deg, #243349 0%, #172033 55%, #0d1422 100%);
+  border: 6px solid #0d1422;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 36px 80px -28px rgba(10, 35, 50, 0.55);
+}
+
+body .phone-screen {
+  background: linear-gradient(180deg, #eaf8fa 0%, #ffffff 60%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+body .phone-logo {
+  background: linear-gradient(160deg, #14b8bf 0%, #0b9ca3 60%, #087f87 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 8px 18px -8px rgba(11, 156, 163, 0.6);
+}
+
+body .store-button {
+  background: linear-gradient(180deg, #2a3852 0%, #172033 60%, #0e1626 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 10px 22px -12px rgba(13, 20, 34, 0.7);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+body .store-button:hover {
+  background: linear-gradient(180deg, #2a3852 0%, #172033 60%, #0e1626 100%);
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+body .phone-input-wrapper {
+  border: 1px solid var(--gl-line);
+  box-shadow: inset 0 1px 2px rgba(13, 43, 68, 0.05), var(--gl-spec);
+  background: #ffffff;
+}
+
+/* =========================================================
+   BUTTONS — GLOSSY GRADIENTS
+   ========================================================= */
+
+/* Primary teal actions */
+body .primary-btn,
+body .about-content .primary-btn,
+body .cta-button,
+body .login-btn,
+body .signup-btn,
+body .admin-login-btn,
+body .admin-login-button,
+body .patient-login-button,
+body .register-button,
+body .enquiry-submit-btn,
+body .send-sms-btn,
+body .fd-book-button,
+body .fd-modal-book,
+body .hero-button.primary,
+body .media-button,
+body .contact-button,
+body .read-more-btn,
+body .view-all-btn {
+  background-image:
+    linear-gradient(115deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, #16bcc4 0%, #0b9ca3 50%, #087f87 100%);
+  background-size: 260% 100%, 100% 100%;
+  background-position: 130% 0, 0 0;
+  background-repeat: no-repeat;
+  border: none;
+  color: #ffffff;
+  box-shadow: var(--gl-btn-shadow);
+  transition: background-position 0.7s ease, transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+body .primary-btn:hover,
+body .about-content .primary-btn:hover,
+body .cta-button:hover,
+body .login-btn:hover,
+body .signup-btn:hover,
+body .admin-login-btn:hover,
+body .admin-login-button:hover,
+body .patient-login-button:hover,
+body .register-button:hover,
+body .enquiry-submit-btn:hover,
+body .send-sms-btn:hover,
+body .fd-book-button:hover,
+body .fd-modal-book:hover,
+body .hero-button.primary:hover,
+body .media-button:hover,
+body .contact-button:hover,
+body .read-more-btn:hover,
+body .view-all-btn:hover {
+  background-position: -30% 0, 0 0;
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.14),
+    0 14px 28px -10px rgba(11, 156, 163, 0.7);
+}
+
+body .primary-btn:active,
+body .cta-button:active,
+body .admin-login-button:active,
+body .patient-login-button:active,
+body .register-button:active,
+body .fd-book-button:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+body .admin-login-button:disabled,
+body .patient-login-button:disabled,
+body .register-button:disabled {
+  filter: grayscale(0.2) brightness(0.95);
+  opacity: 0.7;
+  transform: none;
+}
+
+/* Secondary / outline actions */
+body .secondary-btn,
+body .hero-button.secondary,
+body .press-button.outline,
+body .fd-modal-cancel,
+body .department-toggle {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f8fa 100%);
+  border: 1px solid rgba(11, 156, 163, 0.55);
+  color: var(--gl-teal-deep);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 12px -8px rgba(11, 156, 163, 0.4);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body .secondary-btn:hover,
+body .hero-button.secondary:hover,
+body .press-button.outline:hover,
+body .fd-modal-cancel:hover,
+body .department-toggle:hover {
+  background: linear-gradient(180deg, #16bcc4 0%, #0b9ca3 60%, #087f87 100%);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: var(--gl-btn-shadow);
+}
+
+/* Text-style back links keep their look but gain a glossy hover */
+body .patient-back-button,
+body .register-back-button {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+body .patient-back-button:hover,
+body .register-back-button:hover {
+  transform: translateX(-2px);
+}
+
+/* =========================================================
+   INPUTS — GLOSSY FIELDS
+   ========================================================= */
+
+body .admin-input-group input,
+body .patient-input-group input,
+body .register-input-group input,
+body .enquiry-form-group input,
+body .enquiry-form-group textarea,
+body .fd-search-box input,
+body .article-search-control input,
+body .phone-input-wrapper input,
+body .rare-search input {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdfe 100%);
+  border: 1px solid #d3e2e9;
+  box-shadow: inset 0 1px 2px rgba(13, 43, 68, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body .admin-input-group input:focus,
+body .patient-input-group input:focus,
+body .register-input-group input:focus,
+body .enquiry-form-group input:focus,
+body .enquiry-form-group textarea:focus,
+body .fd-search-box input:focus,
+body .article-search-control input:focus,
+body .phone-input-wrapper input:focus,
+body .rare-search input:focus {
+  border-color: var(--gl-teal);
+  box-shadow: inset 0 1px 2px rgba(13, 43, 68, 0.04), var(--gl-ring);
+  outline: none;
+}
+
+body .fd-search-box,
+body .article-search-control,
+body .rare-search {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 8px 22px -16px rgba(13, 43, 68, 0.3);
+  border-radius: 12px;
+}
+
+/* =========================================================
+   LOGIN / REGISTER — GLASS CARDS
+   ========================================================= */
+
+body .admin-login-card,
+body .patient-login-card {
+  padding: 38px 36px;
+  border-radius: 20px;
+  background:
+    radial-gradient(520px 240px at 50% -12%, rgba(102, 209, 207, 0.14), transparent 62%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 251, 253, 0.94) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 30px 70px -30px rgba(13, 43, 68, 0.4);
+}
+
+body .patient-register-card {
+  padding: 32px 34px 38px;
+  border-radius: 20px;
+  background:
+    radial-gradient(520px 240px at 50% -12%, rgba(102, 209, 207, 0.14), transparent 62%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 251, 253, 0.94) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 30px 70px -30px rgba(13, 43, 68, 0.4);
+}
+
+body .admin-login-form-side,
+body .patient-auth-form-side,
+body .patient-register-form-side {
+  background:
+    radial-gradient(700px 420px at 100% 0%, rgba(11, 120, 179, 0.08), transparent 60%),
+    #f6fafc;
+}
+
+body .admin-image-overlay,
+body .patient-image-overlay,
+body .register-image-overlay {
+  background:
+    linear-gradient(135deg, rgba(7, 27, 43, 0.62) 0%, rgba(11, 120, 179, 0.3) 100%),
+    linear-gradient(0deg, rgba(4, 26, 42, 0.42) 0%, rgba(0, 0, 0, 0) 40%);
+}
+
+body .admin-logo,
+body .admin-mobile-logo,
+body .register-mobile-logo {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.14) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+body .admin-mobile-logo,
+body .register-mobile-logo {
+  background: linear-gradient(160deg, #e4f7f7 0%, #cdefef 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 18px -10px rgba(11, 156, 163, 0.5);
+}
+
+body .admin-security {
+  background: linear-gradient(180deg, #eef9f9 0%, #e2f4f4 100%);
+  border: 1px solid rgba(11, 156, 163, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body .admin-error,
+body .patient-login-error,
+body .register-error {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* =========================================================
+   MODALS / DRAWERS / POPUPS
+   ========================================================= */
+
+body .fd-profile-modal,
+body .success-popup {
+  background: linear-gradient(180deg, #ffffff 0%, #f6fafc 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 40px 90px -30px rgba(13, 43, 68, 0.5);
+}
+
+body .fd-modal-overlay {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+body .enquiry-side-drawer {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+  box-shadow: -18px 0 60px -20px rgba(13, 43, 68, 0.45);
+}
+
+body .enquiry-drawer-about {
+  background: linear-gradient(180deg, #f3f9fc 0%, #eaf4f8 100%);
+  border: 1px solid rgba(11, 120, 179, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body .success-icon {
+  filter: drop-shadow(0 8px 18px rgba(32, 180, 134, 0.4));
+}
+
+/* =========================================================
+   FOOTER — GLOSSY DEEP NAVY
+   ========================================================= */
+
+body .main-footer {
+  background:
+    radial-gradient(900px 320px at 50% -10%, rgba(25, 199, 181, 0.16), transparent 62%),
+    linear-gradient(180deg, #0a2438 0%, #071b2b 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+body .footer-logo-icon {
+  color: var(--gl-mint);
+  filter: drop-shadow(0 0 14px rgba(25, 199, 181, 0.5));
+}
+
+body .footer-column a:hover,
+body .footer-bottom a:hover {
+  color: var(--gl-mint);
+}
+
+body .social-icons a {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body .footer-callback {
+  background: linear-gradient(180deg, #22d8c4 0%, #19c7b5 55%, #0b9ca3 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 12px 28px -10px rgba(25, 199, 181, 0.7);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+body .footer-callback:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+/* =========================================================
+   DASHBOARDS — SAFE FRAME POLISH
+   (inline-styled shells; only the uniquely-identified page
+   wrapper and sidebar are touched, via :has() hooks)
+   ========================================================= */
+
+body div:has(> aside):has(> main) {
+  background:
+    radial-gradient(1000px 520px at 100% -6%, rgba(102, 209, 207, 0.14), transparent 58%),
+    radial-gradient(820px 460px at -4% 10%, rgba(23, 105, 170, 0.1), transparent 55%),
+    #f3f8fb !important;
+}
+
+body aside:has(.dashboard-sidebar-nav-scroll) {
+  background:
+    radial-gradient(420px 220px at 50% -8%, rgba(25, 199, 181, 0.22), transparent 62%),
+    linear-gradient(180deg, #16456b 0%, #12395b 45%, #0d2b44 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset -1px 0 0 rgba(255, 255, 255, 0.05),
+    8px 0 34px -18px rgba(7, 27, 43, 0.7) !important;
+}
+
+/* =========================================================
+   SCROLLBARS — GLOSSY, IN PALETTE
+   ========================================================= */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(11, 156, 163, 0.55) rgba(18, 62, 90, 0.06);
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(18, 62, 90, 0.06);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #14b8bf 0%, #0b9ca3 60%, #087f87 100%);
+  border-radius: 10px;
+  border: 2px solid rgba(243, 248, 251, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #16c7cf 0%, #0b9ca3 60%, #07707a 100%);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Preserve the deliberately hidden dashboard sidebar scrollbar */
+.dashboard-sidebar-nav-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dashboard-sidebar-nav-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* =========================================================
+   FOCUS + MOTION SAFETY
+   ========================================================= */
+
+body a:focus-visible,
+body button:focus-visible,
+body input:focus-visible,
+body textarea:focus-visible,
+body select:focus-visible {
+  outline: 2px solid rgba(11, 156, 163, 0.7);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body *,
+  body *::before,
+  body *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE GUARDRAILS
+   ========================================================= */
+
+@media (max-width: 700px) {
+  body .admin-login-card,
+  body .patient-login-card {
+    padding: 30px 24px;
+    border-radius: 18px;
+  }
+
+  body .patient-register-card {
+    padding: 26px 22px 32px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  body .admin-login-card,
+  body .patient-login-card {
+    padding: 26px 18px;
+  }
+
+  body .patient-register-card {
+    padding: 22px 16px 28px;
+  }
+}

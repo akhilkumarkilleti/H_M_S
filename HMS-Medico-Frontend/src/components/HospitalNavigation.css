@@ -1,0 +1,1049 @@
+/* =========================================================
+   ANNOUNCEMENT
+   ========================================================= */
+
+.common-announcement {
+  background: #0b4778;
+  color: #fff;
+  padding: 7px 5%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  gap: 20px;
+}
+
+
+/* =========================================================
+   UTILITY BAR
+   ========================================================= */
+
+.common-utility-bar {
+  background: #87ceeb;
+  border-bottom: 1px solid #e5edf3;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 7px 5%;
+  font-size: 12px;
+}
+
+.common-utility-left,
+.common-utility-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.common-utility-bar button,
+.common-utility-bar a {
+  border: 0;
+  background: none;
+  color: #4b5d6d;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.common-utility-bar button:hover,
+.common-utility-bar a:hover {
+  color: #000;
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   MAIN NAVBAR
+   ========================================================= */
+
+.common-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: #fff;
+
+  min-height: 76px;
+
+  padding: 10px 5%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  border-bottom: 1px solid #dfe8ef;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.common-logo {
+  border: 0;
+  background: none;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  cursor: pointer;
+
+  min-width: 150px;
+
+  text-align: left;
+}
+
+.common-logo-mark {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 10px;
+
+  background: #0b78b3;
+
+  color: #fff;
+
+  font-size: 23px;
+}
+
+.common-logo strong {
+  display: block;
+
+  font-size: 21px;
+
+  line-height: 20px;
+
+  color: #123e5a;
+}
+
+.common-logo small {
+  display: block;
+
+  font-size: 10px;
+
+  color: #648092;
+
+  letter-spacing: 1.3px;
+}
+
+
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
+
+.common-nav-links {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+
+  flex: 1;
+}
+
+.common-nav-group {
+  position: relative;
+}
+
+
+/* =========================================================
+   MAIN NAV BUTTON
+   ========================================================= */
+
+.common-nav-button {
+  border: 0;
+  background: transparent;
+
+  padding: 13px 10px;
+
+  color: #26485e;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  border-radius: 7px;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.common-nav-button:hover,
+.common-nav-button.active {
+  background: #eef7fc;
+
+  color: #0875ae;
+}
+
+.main-arrow {
+  margin-left: 5px;
+
+  font-size: 11px;
+
+  color: #0875ae;
+}
+
+
+/* =========================================================
+   MAIN DROPDOWN
+   ========================================================= */
+
+.common-dropdown {
+  position: absolute;
+
+  top: calc(100% + 4px);
+  left: 0;
+
+  min-width: 320px;
+
+  background: #fff;
+
+  border: 1px solid #dbe7ee;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 12px 35px rgba(19, 54, 76, 0.14);
+
+  padding: 7px;
+
+  z-index: 1200;
+
+  animation: dropdownFadeIn 0.18s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   SIMPLE DROPDOWN BUTTON
+   ========================================================= */
+
+.dropdown-simple-button {
+  display: block;
+
+  width: 100%;
+
+  text-align: left;
+
+  border: 0;
+
+  background: #fff;
+
+  padding: 11px 13px;
+
+  border-radius: 7px;
+
+  color: #2d4b5c;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.dropdown-simple-button:hover {
+  background: #eef7fc;
+
+  color: #0675ae;
+}
+
+
+/* =========================================================
+   TREATMENTS DROPDOWN
+   ========================================================= */
+
+.treatments-dropdown {
+  min-width: 310px;
+
+  padding: 8px;
+}
+
+
+/* =========================================================
+   TREATMENT ITEM
+   ========================================================= */
+
+.dropdown-item-wrapper {
+  position: relative;
+}
+
+
+/*
+   IMPORTANT:
+
+   The parent button is clickable.
+   Hovering the wrapper opens the nested menu.
+*/
+
+.has-submenu {
+  position: relative;
+}
+
+
+/* =========================================================
+   PARENT TREATMENT BUTTON
+   ========================================================= */
+
+.dropdown-parent-button {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border: none;
+
+  background: #fff;
+
+  padding: 13px 14px;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  color: #153f62;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.dropdown-parent-button:hover,
+.dropdown-parent-button.submenu-hovered {
+  background: #eef7fc;
+
+  color: #087bb9;
+}
+
+
+/* =========================================================
+   SUBMENU ARROW
+   ========================================================= */
+
+.submenu-arrow {
+  color: #087bb9;
+
+  font-size: 22px;
+
+  line-height: 1;
+
+  font-weight: 500;
+
+  transition: transform 0.2s ease;
+}
+
+.submenu-arrow.rotated {
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   NESTED DROPDOWN
+   ========================================================= */
+
+.nested-dropdown {
+  position: absolute;
+
+  top: -1px;
+
+  left: calc(100% + 5px);
+
+  width: 255px;
+
+  background: #fff;
+
+  border: 1px solid #dce7ef;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 12px 35px rgba(0, 50, 90, 0.16);
+
+  padding: 7px 0;
+
+  z-index: 9999;
+
+  animation: nestedMenuOpen 0.18s ease;
+}
+
+@keyframes nestedMenuOpen {
+  from {
+    opacity: 0;
+
+    transform: translateX(-7px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   NESTED TITLE
+   ========================================================= */
+
+.nested-dropdown-title {
+  padding: 11px 16px;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  color: #087bb9;
+
+  border-bottom: 1px solid #edf2f5;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   NESTED BUTTON
+   ========================================================= */
+
+.nested-dropdown-button {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border: none;
+
+  background: transparent;
+
+  padding: 12px 16px;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  color: #153f62;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.nested-dropdown-button:hover {
+  background: #eef7fc;
+
+  color: #087bb9;
+
+  padding-left: 22px;
+}
+
+.nested-arrow {
+  color: #087bb9;
+
+  font-size: 15px;
+
+  transition: transform 0.2s ease;
+}
+
+.nested-dropdown-button:hover .nested-arrow {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   LOGIN DROPDOWN
+   ========================================================= */
+
+.common-login-dropdown {
+  right: 0;
+
+  left: auto;
+
+  min-width: 250px;
+}
+
+.common-login-dropdown button {
+  display: block;
+
+  width: 100%;
+
+  text-align: left;
+
+  border: 0;
+
+  background: #fff;
+
+  padding: 11px 13px;
+
+  border-radius: 7px;
+
+  color: #2d4b5c;
+
+  cursor: pointer;
+}
+
+.common-login-dropdown button:hover {
+  background: #eef7fc;
+
+  color: #0675ae;
+}
+
+
+/* =========================================================
+   NAV ACTIONS
+   ========================================================= */
+
+.common-nav-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+/* =========================================================
+   APPOINTMENT
+   ========================================================= */
+
+.common-appointment-button {
+  border: 0;
+
+  border-radius: 8px;
+
+  background: #0b78b3;
+
+  color: #fff;
+
+  padding: 12px 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition: background 0.2s ease;
+}
+
+.common-appointment-button:hover {
+  background: #075f8d;
+}
+
+
+/* =========================================================
+   QUICK ENQUIRY
+   ========================================================= */
+
+.enquiry-layer {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 5000;
+
+  display: flex;
+
+  justify-content: flex-end;
+}
+
+.enquiry-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(7, 28, 43, 0.58);
+
+  backdrop-filter: blur(2px);
+
+  cursor: pointer;
+}
+
+.enquiry-side-drawer {
+  position: relative;
+
+  z-index: 1;
+
+  width: min(620px, 100%);
+
+  height: 100%;
+
+  overflow-y: auto;
+
+  background: #fff;
+
+  box-shadow:
+    -12px 0 40px rgba(0, 0, 0, 0.2);
+
+  padding: 0 30px 34px;
+
+  animation: enquirySlideIn 0.25s ease-out;
+}
+
+@keyframes enquirySlideIn {
+  from {
+    transform: translateX(100%);
+
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateX(0);
+
+    opacity: 1;
+  }
+}
+
+.enquiry-drawer-header {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 2;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 18px;
+
+  margin: 0 -30px 22px;
+
+  padding: 25px 30px 20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff 88%,
+      rgba(255, 255, 255, 0.96)
+    );
+
+  border-bottom: 1px solid #e5edf3;
+}
+
+.enquiry-drawer-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #0b78b3;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+.enquiry-drawer-header h2 {
+  margin: 0;
+
+  color: #123e5a;
+
+  font-size: 30px;
+
+  line-height: 1.1;
+}
+
+.enquiry-close-button {
+  flex: 0 0 auto;
+
+  width: 40px;
+
+  height: 40px;
+
+  border: 1px solid #d8e5ec;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  color: #23465a;
+
+  font-size: 28px;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.enquiry-close-button:hover {
+  background: #eef7fc;
+
+  color: #0875ae;
+}
+
+.enquiry-drawer-about {
+  margin-bottom: 20px;
+
+  padding: 20px;
+
+  border-radius: 14px;
+
+  background: #f3f9fc;
+
+  border: 1px solid #e0edf3;
+}
+
+.enquiry-drawer-about h3 {
+  margin: 0 0 4px;
+
+  color: #123e5a;
+
+  font-size: 22px;
+}
+
+.enquiry-drawer-about h4 {
+  margin: 0 0 12px;
+
+  color: #0b78b3;
+
+  font-size: 14px;
+}
+
+.enquiry-drawer-about p {
+  margin: 8px 0 0;
+
+  color: #526b7a;
+
+  font-size: 14px;
+
+  line-height: 1.65;
+}
+
+.enquiry-form-description {
+  margin: 0 0 20px;
+
+  color: #526b7a;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+.enquiry-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+.enquiry-form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 14px;
+}
+
+.enquiry-form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.enquiry-form-group label {
+  color: #23465a;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+.enquiry-form-group input,
+.enquiry-form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #ccdce5;
+
+  border-radius: 9px;
+
+  background: #fff;
+
+  color: #183b50;
+
+  padding: 12px 13px;
+
+  font: inherit;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.enquiry-form-group input:focus,
+.enquiry-form-group textarea:focus {
+  border-color: #0b78b3;
+
+  box-shadow:
+    0 0 0 3px rgba(11, 120, 179, 0.1);
+}
+
+.enquiry-form-group textarea {
+  min-height: 125px;
+
+  resize: vertical;
+}
+
+.enquiry-submit-btn {
+  width: 100%;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  background: #0b78b3;
+
+  color: #fff;
+
+  padding: 14px 18px;
+
+  font-weight: 800;
+
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+.enquiry-submit-btn:hover {
+  background: #075f8d;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .common-nav-links {
+    overflow: auto;
+  }
+
+  .common-utility-left {
+    overflow: auto;
+  }
+
+  .common-utility-right {
+    display: none;
+  }
+
+  .common-navbar {
+    padding-left: 3%;
+
+    padding-right: 3%;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .common-navbar {
+    flex-wrap: wrap;
+  }
+
+  .common-nav-links {
+    order: 3;
+
+    flex-basis: 100%;
+
+    overflow: auto;
+  }
+
+  .common-nav-actions {
+    margin-left: auto;
+  }
+
+  /*
+     Nested menu becomes normal-flow on smaller screens.
+  */
+
+  .nested-dropdown {
+    position: static;
+
+    width: 100%;
+
+    margin-top: 2px;
+
+    border-radius: 8px;
+
+    box-shadow: none;
+
+    border-left: 3px solid #087bb9;
+
+    animation: none;
+  }
+
+  .treatments-dropdown {
+    min-width: 300px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .common-announcement {
+    padding: 7px 4%;
+
+    font-size: 11px;
+  }
+
+  .common-announcement-right {
+    display: none;
+  }
+
+  .common-utility-bar {
+    padding: 7px 4%;
+  }
+
+  .common-utility-left {
+    width: 100%;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+  }
+
+  .common-utility-right {
+    display: none;
+  }
+
+  .common-navbar {
+    padding: 10px 4%;
+
+    gap: 10px;
+  }
+
+  .common-logo {
+    min-width: 140px;
+  }
+
+  .common-logo strong {
+    font-size: 19px;
+  }
+
+  .common-nav-links {
+    gap: 2px;
+  }
+
+  .common-nav-button {
+    padding: 11px 8px;
+
+    font-size: 13px;
+  }
+
+  .common-nav-actions {
+    gap: 5px;
+  }
+
+  .common-appointment-button {
+    padding: 10px 11px;
+
+    font-size: 12px;
+  }
+
+  /*
+     Main dropdown stays inside viewport.
+  */
+
+  .common-dropdown {
+    left: 0;
+
+    min-width: 270px;
+
+    max-width: calc(100vw - 30px);
+  }
+
+  /*
+     Nested dropdown is displayed below
+     the parent on mobile.
+  */
+
+  .nested-dropdown {
+    position: static;
+
+    width: 100%;
+
+    margin: 2px 0 5px;
+
+    border-radius: 8px;
+
+    border-left: 3px solid #087bb9;
+
+    box-shadow: none;
+  }
+
+  .enquiry-side-drawer {
+    padding: 0 18px 26px;
+  }
+
+  .enquiry-drawer-header {
+    margin: 0 -18px 18px;
+
+    padding: 20px 18px 16px;
+  }
+
+  .enquiry-drawer-header h2 {
+    font-size: 25px;
+  }
+
+  .enquiry-form-row {
+    grid-template-columns: 1fr;
+  }
+}
